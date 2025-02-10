@@ -1,0 +1,22 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100vw;
+}
+
+.navbar {
+    position: fixed; /* Fijado en la parte superior */
+    top: 0; /* Se queda pegado arriba */
+    left: 0; /* Se asegura que comience desde la izquierda vw*/
+    width: 100%; /* Ocupa todo el ancho de la pantalla */
+    max-width: 100%; /* Se asegura de no exceder el ancho */
+    min-height: 50px;
+    background-color: #a7c7e7;
+    padding: 5px 0; /* Espaciado vertical */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000; /* Se mantiene sobre otros elementos */
+    
+    display: grid;
+    grid-template-columns: 10% 80% 10%;
+}
