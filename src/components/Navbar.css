@@ -20,3 +20,32 @@ html, body {
     display: grid;
     grid-template-columns: 10% 80% 10%;
 }
+
+.navbar-components{
+    grid-column: 2 / 3;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.left-component {
+    grid-column: 1 / 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.mid-component {
+    grid-column: 2 / 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.right-component {
+    grid-column: 3 / 4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
