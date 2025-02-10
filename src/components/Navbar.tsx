@@ -23,8 +23,8 @@ export const Navbar: React.FC = () => {
           </Link>
         </div>
         <div className="right-component">
-          <Link to="/cart" className="navbar-cart">
-            <BsCart3 />
+          <Link to="/cart" >
+            <BsCart3 className="navbar-cart"/>
           </Link>
           <button className="navbar-login-button">Inciar sesion</button>
         </div>
