@@ -1,16 +1,23 @@
-/* src/components/Slider/Slider.css */
-
 /* 🔹 Contenedor del slider */
 .slider-container {
-  width: 100%;
-  max-width: 600px;
-  margin: 20px auto;
+  width: 90%; /* Permitir que el slider se adapte al tamaño de la pantalla */
+  max-width: 600px; /* Limitar el tamaño máximo en pantallas grandes */
+  margin: 20px auto; /* Centrarlo */
   text-align: center;
 }
 
-/* 🔹 Imagen dentro del slider */
+img {
+  width: 90%; /* Permitir que el slider se adapte al tamaño de la pantalla */
+  max-width: 600px; /* Limitar el tamaño máximo en pantallas grandes */
+  margin: 20px auto; /* Centrarlo */
+  text-align: center;
+}
+
+/* 🔹 Ajuste de las imágenes */
 .slide-image {
   width: 100%;
   height: auto;
+  max-height: 300px; /* Máximo de 300px en pantallas grandes */
+  object-fit: cover; /* Mantener el aspecto sin distorsión */
   border-radius: 10px;
 }
