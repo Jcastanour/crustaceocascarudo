@@ -1,3 +1,10 @@
+import { Slider } from "../components/Slider";
+
 export const Home: React.FC = () => {
-  return <h1>Home</h1>;
+  return (
+    <div className="home">
+      <h1>¡Bienvenido al Crustaceo Cascarudo!</h1>
+      <Slider />
+    </div>
+  );
 };

@@ -1,0 +1,16 @@
+/* src/components/Slider/Slider.css */
+
+/* 🔹 Contenedor del slider */
+.slider-container {
+  width: 100%;
+  max-width: 600px;
+  margin: 20px auto;
+  text-align: center;
+}
+
+/* 🔹 Imagen dentro del slider */
+.slide-image {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
