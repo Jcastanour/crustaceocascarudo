@@ -1,23 +1,28 @@
-import { useState } from "react";
 import "../styles/Products.css";
 
 interface QuantitySelectorProps {
   productId: number;
+  quantity: number;
+  onQuantityChange: (newQuantity: number) => void;
 }
 
 export const QuantitySelector: React.FC<QuantitySelectorProps> = ({
   productId,
+  quantity,
+  onQuantityChange,
 }) => {
-  const [quantity, setQuantity] = useState(1);
-
-  const aumentar = () => setQuantity((prev) => prev + 1);
-  const decrementar = () => setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
+  const aumentar = () => onQuantityChange(quantity + 1);
+  const decrementar = () => onQuantityChange(quantity > 1 ? quantity - 1 : 1);
 
   return (
     <div className="quantity-selector">
-      <button onClick={decrementar}>-</button>
+      <button onClick={decrementar} className="decrease">
+        -
+      </button>
       <span>{quantity}</span>
-      <button onClick={aumentar}>+</button>
+      <button onClick={aumentar} className="increase">
+        +
+      </button>
     </div>
   );
 };

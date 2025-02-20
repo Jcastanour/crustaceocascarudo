@@ -1,6 +1,8 @@
+import { useState } from "react";
 import { Product } from "../types/Product";
 import "../styles/Products.css";
 import { QuantitySelector } from "./QuantitySelector";
+import { useCart } from "../contexts/CartContext";
 
 interface ProductsProps {
   product: Product;
@@ -13,6 +15,13 @@ export const Products: React.FC<ProductsProps> = ({
   isExpanded,
   onToggle,
 }) => {
+  const [quantity, setQuantity] = useState(1);
+  const { addToCart } = useCart();
+
+  const handleQuantityChange = (newQuantity: number) => {
+    setQuantity(newQuantity);
+  };
+
   return (
     <div className="product-container">
       <div className="product-container-upper" onClick={onToggle}>
@@ -21,12 +30,17 @@ export const Products: React.FC<ProductsProps> = ({
         <p>${product.price}</p>
         <button className="menu-item-toggle">{isExpanded ? "▲" : "▼"}</button>
       </div>
-
       {isExpanded && (
         <div className="product-container-lower">
           <p>{product.description}</p>
-          <QuantitySelector productId={product.id} />
-          <button>Agregar al carrito</button>
+          <QuantitySelector
+            productId={product.id}
+            quantity={quantity}
+            onQuantityChange={handleQuantityChange}
+          />
+          <button onClick={() => addToCart(product.id, quantity)}>
+            Agregar al carrito
+          </button>
         </div>
       )}
     </div>
