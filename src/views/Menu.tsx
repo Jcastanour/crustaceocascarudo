@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { ProductsMocks } from "../mocks/ProductsMocks";
 import { Products } from "../components/Products";
-import "../components/Products.css";
+import "../styles/Products.css";
 
 export const Menu = () => {
   const [expandedItem, setExpandedItem] = useState<number | null>(null);

@@ -4,7 +4,7 @@ import { Navigation, Pagination, Autoplay } from "swiper/modules";
 
 import "swiper/swiper-bundle.css"; // Importa todos los estilos de Swiper
 
-import "./Slider.css";
+import "../styles/Slider.css";
 
 const images = Object.values(import.meta.glob("../assets/SliderImages/*.jpg", { eager: true }));
 
