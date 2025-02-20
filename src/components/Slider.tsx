@@ -4,7 +4,7 @@ import { Navigation, Pagination, Autoplay } from "swiper/modules";
 
 import "swiper/swiper-bundle.css"; // Importa todos los estilos de Swiper
 
-import "./Slider.css";
+import "../styles/Slider.css";
 
 import burgerImage from "../assets/SliderImages/burgerimage.jpg";
 import cangreburguer from "../assets/SliderImages/Cangreburguer.jpg";

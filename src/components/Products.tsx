@@ -1,5 +1,6 @@
 import { Product } from "../types/Product";
-import "./Products.css";
+import "../styles/Products.css";
+import { QuantitySelector } from "./QuantitySelector";
 
 interface ProductsProps {
   product: Product;
@@ -24,7 +25,7 @@ export const Products: React.FC<ProductsProps> = ({
       {isExpanded && (
         <div className="product-container-lower">
           <p>{product.description}</p>
-          <button>Contador</button>
+          <QuantitySelector productId={product.id} />
           <button>Agregar al carrito</button>
         </div>
       )}

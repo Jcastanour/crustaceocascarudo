@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
 import { BsCart3 } from "react-icons/bs";
 
-import "./Navbar.css";
+import "../styles/Navbar.css";
 
 export const Navbar: React.FC = () => {
   return (
@@ -23,8 +23,8 @@ export const Navbar: React.FC = () => {
           </Link>
         </div>
         <div className="right-component">
-          <Link to="/cart" >
-            <BsCart3 className="navbar-cart"/>
+          <Link to="/cart">
+            <BsCart3 className="navbar-cart" />
           </Link>
           <button className="navbar-login-button">Inciar sesion</button>
         </div>
