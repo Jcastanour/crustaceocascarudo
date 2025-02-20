@@ -11,14 +11,12 @@ export const App: React.FC = () => {
     <BrowserRouter>
       <Navbar />
       <div className="container">
-        <div>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/Menu" element={<Menu />} />
-            <Route path="/Cart" element={<Cart />} />
-            <Route path="/Login" element={<Login />} />
-          </Routes>
-        </div>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/Menu" element={<Menu />} />
+          <Route path="/Cart" element={<Cart />} />
+          <Route path="/Login" element={<Login />} />
+        </Routes>
       </div>
     </BrowserRouter>
   );
