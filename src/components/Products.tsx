@@ -1,14 +1,15 @@
 import { Product } from "../types/Product";
+import "./Products.css";
 
 interface ProductsProps {
   product: Product;
-  boolean: boolean;
+  isExpanded: boolean;
   onToggle: () => void;
 }
 
 export const Products: React.FC<ProductsProps> = ({
   product,
-  boolean,
+  isExpanded,
   onToggle,
 }) => {
   return (
@@ -17,9 +18,10 @@ export const Products: React.FC<ProductsProps> = ({
         <img src={product.image} alt={product.name} />
         <h2>{product.name}</h2>
         <p>${product.price}</p>
+        <button className="menu-item-toggle">{isExpanded ? "▲" : "▼"}</button>
       </div>
 
-      {boolean && (
+      {isExpanded && (
         <div className="product-container-lower">
           <p>{product.description}</p>
           <button>Contador</button>

@@ -1,0 +1,151 @@
+/* 🔹 Estilos generales del contenedor del producto */
+.product-container {
+  width: 90%;
+  max-width: 400px;
+  margin: 15px auto;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: white;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+}
+
+/* 🔹 Parte superior del producto (imagen, nombre, precio, botón de expandir) */
+.product-container-upper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px;
+  background: #f8f8f8;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.product-container-upper:hover {
+  background: #e0e0e0;
+}
+
+/* 🔹 Imagen del producto */
+.product-container-upper img {
+  width: 50px;
+  height: 50px;
+  border-radius: 8px;
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+/* 🔹 Nombre y precio del producto */
+.product-container-upper h2 {
+  flex-grow: 1;
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.product-container-upper p {
+  font-size: 14px;
+  color: #777;
+  margin: 0 10px;
+}
+
+/* 🔹 Botón para expandir o contraer */
+.menu-item-toggle {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+/* 🔹 Cuando está expandido, rotar el botón */
+.product-container-upper .menu-item-toggle {
+  transform: rotate(0deg);
+}
+
+.product-container-upper .menu-item-toggle[aria-expanded="true"] {
+  transform: rotate(180deg);
+}
+
+/* 🔹 Parte inferior del producto (descripción y botones) */
+.product-container-lower {
+  padding: 12px;
+  background: #eef;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* 🔹 Animación de apertura */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 🔹 Botones (Contador y Agregar al carrito) */
+.product-container-lower button {
+  padding: 8px 12px;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+
+.product-container-lower button:first-child {
+  background: #ff9800;
+  color: white;
+  margin-right: 10px;
+}
+
+.product-container-lower button:first-child:hover {
+  background: #e68900;
+}
+
+.product-container-lower button:last-child {
+  background: #4caf50;
+  color: white;
+}
+
+.product-container-lower button:last-child:hover {
+  background: #3e8e41;
+}
+
+/* 🔹 Estilos responsivos */
+@media (max-width: 768px) {
+  .product-container {
+    width: 100%;
+  }
+
+  .product-container-upper {
+    padding: 10px;
+  }
+
+  .product-container-upper img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .product-container-upper h2 {
+    font-size: 14px;
+  }
+
+  .product-container-upper p {
+    font-size: 12px;
+  }
+
+  .menu-item-toggle {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-container-lower button {
+    font-size: 12px;
+    padding: 6px 10px;
+  }
+}
