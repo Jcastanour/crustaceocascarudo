@@ -1,5 +1,6 @@
 import "./App.css";
 import { Navbar } from "./components/Navbar";
+import {Footer} from "./components/Footer";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Home } from "./views/Home";
 import { Menu } from "./views/Menu";
@@ -9,14 +10,17 @@ import { Login } from "./views/Login";
 export const App: React.FC = () => {
   return (
     <BrowserRouter>
-      <Navbar />
-      <div className="container">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/Menu" element={<Menu />} />
-          <Route path="/Cart" element={<Cart />} />
-          <Route path="/Login" element={<Login />} />
-        </Routes>
+      <div className="app-container">
+        <Navbar />
+        <div className="body_container">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/Menu" element={<Menu />} />
+            <Route path="/Cart" element={<Cart />} />
+            <Route path="/Login" element={<Login />} />
+          </Routes>
+        </div>
+        <Footer />
       </div>
     </BrowserRouter>
   );

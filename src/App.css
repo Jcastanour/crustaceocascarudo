@@ -1,7 +1,24 @@
-/* Centrar container */
-
-.container {
-  display: grid;
-  place-items: center;
-  height: 100vh;
+/* 🔹 Asegurar que el body y html no se expandan más de la pantalla */
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
 }
+
+
+/* 🔹 Contenedor principal que ocupa toda la pantalla */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Ocupa toda la pantalla */
+  overflow: hidden;
+}
+
+/*Conteneddor del body*/
+.body_container{
+  margin: 110px 0 0 0; /* Deja espacio suficiente debajo del navbar */
+  padding: 10px;
+  flex: 1;
+}
+
+

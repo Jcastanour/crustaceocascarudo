@@ -6,12 +6,9 @@ import "swiper/swiper-bundle.css"; // Importa todos los estilos de Swiper
 
 import "./Slider.css";
 
-import burgerImage from "../assets/SliderImages/burgerimage.jpg";
-import cangreburguer from "../assets/SliderImages/Cangreburguer.jpg";
+const images = Object.values(import.meta.glob("../assets/SliderImages/*.jpg", { eager: true }));
 
 export const Slider: React.FC = () => {
-  const images = [burgerImage, cangreburguer];
-
   return (
     <Swiper
       modules={[Navigation, Pagination, Autoplay]}
@@ -23,7 +20,7 @@ export const Slider: React.FC = () => {
     >
       {images.map((image, index) => (
         <SwiperSlide key={index}>
-          <img src={image} alt={`Slide ${index + 1}`} className="slide-image" />
+          <img src={image.default} alt={`Slide ${index + 1}`} className="slide-image" />
         </SwiperSlide>
       ))}
     </Swiper>
