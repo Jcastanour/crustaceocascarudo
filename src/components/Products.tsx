@@ -24,9 +24,17 @@ export const Products: React.FC<ProductsProps> = ({
 
       {isExpanded && (
         <div className="product-container-lower">
-          <p>{product.description}</p>
-          <QuantitySelector productId={product.id} />
-          <button>Agregar al carrito</button>
+          
+          <div className="product-container-lower-description">
+            <p>{product.description}</p>
+          </div>
+          <div className="product-container-lower-quantitySelector">
+            <QuantitySelector productId={product.id} />
+          </div>
+          <div className="product-container-lower-buttom">
+            <button>Agregar al carrito</button>
+          </div>
+          
         </div>
       )}
     </div>
