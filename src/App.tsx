@@ -6,7 +6,7 @@ import { Home } from "./views/Home";
 import { Menu } from "./views/Menu";
 import { Cart } from "./views/Cart";
 import { Login } from "./views/Login";
-import { Tyc } from "./views/tyc";
+import { Tyc } from "./views/Tyc";
 
 export const App: React.FC = () => {
   return (
