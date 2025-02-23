@@ -1,10 +1,15 @@
 import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
 import { BsCart3 } from "react-icons/bs";
-
+import { useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
+import { UserMenu } from "./UserMenu";
 import "../styles/Navbar.css";
 
 export const Navbar: React.FC = () => {
+  const { user, logout } = useContext(AuthContext);
+  console.log(user);
+
   return (
     <nav className="navbar">
       <div className="navbar-components">
@@ -26,10 +31,16 @@ export const Navbar: React.FC = () => {
           <Link to="/cart">
             <BsCart3 className="navbar-cart" />
           </Link>
-          <button className="navbar-login-button">Inciar sesion</button>
+
+          {user ? (
+            <UserMenu />
+          ) : (
+            <Link to={"/login"} className="navbar-link">
+              <button className="navbar-login-button">Inciar sesion</button>
+            </Link>
+          )}
         </div>
       </div>
-      <img src="./assets/logo.png" alt="" />
     </nav>
   );
 };

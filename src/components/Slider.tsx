@@ -20,20 +20,11 @@ export const Slider: React.FC = () => {
       loop={true}
       className="slider-container"
     >
-      {images.map(
-        (image, index) => (
-          console.log(image),
-          (
-            <SwiperSlide key={index}>
-              <img
-                src={image}
-                alt={`Slide ${index + 1}`}
-                className="slide-image"
-              />
-            </SwiperSlide>
-          )
-        )
-      )}
+      {images.map((image, index) => (
+        <SwiperSlide key={index}>
+          <img src={image} alt={`Slide ${index + 1}`} className="slide-image" />
+        </SwiperSlide>
+      ))}
     </Swiper>
   );
 };

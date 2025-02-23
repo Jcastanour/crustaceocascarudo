@@ -1,10 +1,10 @@
 /* 🔹 Asegurar que el body y html no se expandan más de la pantalla */
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
 }
-
 
 /* 🔹 Contenedor principal que ocupa toda la pantalla */
 .app-container {
@@ -15,10 +15,8 @@ html, body {
 }
 
 /*Conteneddor del body*/
-.body_container{
+.body_container {
   margin: 110px 0 0 0; /* Deja espacio suficiente debajo del navbar */
   padding: 10px;
   flex: 1;
 }
-
-

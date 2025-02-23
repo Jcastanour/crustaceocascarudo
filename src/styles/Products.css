@@ -1,4 +1,3 @@
-
 /* 🔹 Estilos generales del contenedor del producto */
 .product-container {
   width: 90%;
@@ -89,7 +88,7 @@
 }
 
 /*Le damos la posicion al boton agregar de la parte inferior del producto*/
-.product-container-lower-buttom{
+.product-container-lower-buttom {
   grid-column: 2 / 3;
   grid-row: 2 / 3;
   display: flex;
@@ -97,7 +96,7 @@
   justify-content: center;
 }
 /*Le damos la posicion alos botones + y - de la parte inferior del producto*/
-.product-container-lower-quantitySelector{
+.product-container-lower-quantitySelector {
   grid-column: 1 / 2;
   grid-row: 2 / 3;
   display: flex;
@@ -105,6 +104,19 @@
   justify-content: center;
 }
 
+.quantity-selector {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* gap: 5px; */
+}
+
+.quantity-selector span {
+  min-width: 30px; /* Define un ancho mínimo para centrar el número */
+  text-align: center; /* Centra el texto dentro del span */
+  font-size: 20px;
+  font-weight: bold;
+}
 
 /* 🔹 Animación de apertura */
 @keyframes fadeIn {
@@ -131,7 +143,7 @@
 .product-container-lower button:first-child {
   background: #ff9800;
   color: white;
-  margin-right: 10px;
+  font-weight: bold;
 }
 
 .product-container-lower button:first-child:hover {
@@ -141,6 +153,7 @@
 .product-container-lower button:last-child {
   background: #4caf50;
   color: white;
+  font-weight: bold;
 }
 
 .product-container-lower button:last-child:hover {
