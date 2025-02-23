@@ -6,7 +6,9 @@ import "swiper/swiper-bundle.css"; // Importa todos los estilos de Swiper
 
 import "../styles/Slider.css";
 
-const images = Object.values(import.meta.glob("../assets/SliderImages/*.jpg", { eager: true }));
+const images = Object.values(
+  import.meta.glob("../assets/SliderImages/*.jpg", { eager: true })
+).map((img) => (img as { default: string }).default);
 
 export const Slider: React.FC = () => {
   return (
@@ -18,11 +20,20 @@ export const Slider: React.FC = () => {
       loop={true}
       className="slider-container"
     >
-      {images.map((image, index) => (
-        <SwiperSlide key={index}>
-          <img src={image.default} alt={`Slide ${index + 1}`} className="slide-image" />
-        </SwiperSlide>
-      ))}
+      {images.map(
+        (image, index) => (
+          console.log(image),
+          (
+            <SwiperSlide key={index}>
+              <img
+                src={image}
+                alt={`Slide ${index + 1}`}
+                className="slide-image"
+              />
+            </SwiperSlide>
+          )
+        )
+      )}
     </Swiper>
   );
 };
