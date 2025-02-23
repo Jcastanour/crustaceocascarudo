@@ -1,0 +1,16 @@
+.home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.home-ubicacion {
+  /* width: auto; */
+  height: 450px;
+}
+
+@media only screen and (max-width: 900px) {
+  .home-ubicacion {
+    height: 250px;
+  }
+}

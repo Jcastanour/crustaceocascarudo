@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
-import { BsCart3 } from "react-icons/bs";
 
-import "./Footer.css";
+import "../styles/Footer.css";
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="footer">Hola</footer>
+    <footer className="footer">
+      <Link to="./Tyc">Terminos y Condiciones</Link>
+    </footer>
   );
 };
