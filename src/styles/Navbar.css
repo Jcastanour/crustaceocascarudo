@@ -38,8 +38,9 @@ body {
 }
 /*modificar el logo*/
 .navbar-logo {
-  width: 25%;
+  max-width: 100px;
   height: auto;
+  object-fit: contain;
 }
 
 /*Para modificar el componente medio-------*/
@@ -64,15 +65,86 @@ a {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: 5px;
 }
 
 .navbar-cart {
   width: 50px;
-  height: 50px;
   color: black;
+  object-fit: contain;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+
+.navbar-login-button {
+  font-size: 15px;
+  padding: 20px;
+  gap: 50px;
+  display: flex;
+  justify-self: center;
 }
 
 .navbar-cart :hover {
-  color: #05061c;
+  color: #646cff;
+}
+
+
+/*Para dispostivos con pantalla mas pequeña*/
+@media only screen and (max-width: 500px) {
+  .navbar-components {
+    grid-column: 2 / 3;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 60% 40%;
+  }
+
+  .left-component {
+    grid-column: 1 / 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  /*modificar el logo*/
+  .navbar-logo {
+    max-width: 60px;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .mid-component {
+    grid-column: 1 / 3;
+    grid-row: 2 / 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .right-component {
+    grid-column: 2 / 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0px;
+  }
+
+  .navbar-cart {
+    width: 30px;
+    height: 30px;
+    color: black;
+    object-fit: contain;
+  }
+  
+  .navbar-cart :hover {
+    color: #646cff;
+  }
+
+  .navbar-login-button {
+    font-size: 15px;
+    padding: 5px;
+    gap: 0px;
+    display: flex;
+    justify-self: center;
+  }
 }

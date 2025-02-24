@@ -8,7 +8,6 @@ import "../styles/Navbar.css";
 
 export const Navbar: React.FC = () => {
   const { user, logout } = useContext(AuthContext);
-  console.log(user);
 
   return (
     <nav className="navbar">
@@ -28,8 +27,8 @@ export const Navbar: React.FC = () => {
           </Link>
         </div>
         <div className="right-component">
-          <Link to="/cart">
-            <BsCart3 className="navbar-cart" />
+          <Link to="/cart" className="navbar-cart">
+            <BsCart3 />
           </Link>
 
           {user ? (
