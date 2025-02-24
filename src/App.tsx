@@ -9,6 +9,7 @@ import { Login } from "./views/Login";
 import { Tyc } from "./views/Tyc";
 import { AuthProvider } from "./context/AuthContext";
 import { Register } from "./views/Register";
+import { PlanktonCaptcha } from "./components/PlanktonCaptcha";
 
 export const App: React.FC = () => {
   return (
@@ -18,6 +19,7 @@ export const App: React.FC = () => {
         <div className="body_container">
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/PlanktonCaptcha" element={<PlanktonCaptcha />} />
             <Route path="/Menu" element={<Menu />} />
             <Route path="/Cart" element={<Cart />} />
             <Route path="/Login" element={<Login />} />
