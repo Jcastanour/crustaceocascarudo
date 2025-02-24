@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
+import { esPlankton } from "../utils/planktonverification";
 
 export const Login: React.FC = () => {
   const { login } = useContext(AuthContext);
@@ -10,7 +11,13 @@ export const Login: React.FC = () => {
   const [notPlankton, setNotPlankton] = useState<boolean>(false);
   const [termsAccepted, setTermsAccepted] = useState<boolean>(false);
 
-  const handleLogin = () => {
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (esPlankton(correo) || esPlankton(password)) {
+      alert("🚫 Plankton, no puedes robar la receta secreta.");
+      return;
+    }
+
     if (!notPlankton) {
       alert("Confirmar que no eres Plankton");
       return;

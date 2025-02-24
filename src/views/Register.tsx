@@ -3,6 +3,7 @@ import { AuthContext } from "../context/AuthContext";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/Register.css";
+import { esPlankton } from "../utils/planktonverification";
 
 export const Register: React.FC = () => {
   const { register } = useContext(AuthContext);
@@ -13,6 +14,12 @@ export const Register: React.FC = () => {
 
   const handleRegister = (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (esPlankton(name) || esPlankton(email) || esPlankton(password)) {
+      alert("🚫 Plankton, no puedes robar la receta secreta.");
+      return;
+    }
+
     register(name, email, password);
     navigate("/login");
   };
@@ -29,6 +36,7 @@ export const Register: React.FC = () => {
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder="Nombre"
+            required
           ></input>
 
           <label htmlFor="register-email">Correo:</label>
@@ -38,6 +46,7 @@ export const Register: React.FC = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Correo"
+            required
           ></input>
 
           <label htmlFor="register-password">Contraseña::</label>
@@ -47,9 +56,12 @@ export const Register: React.FC = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Correo"
+            required
           ></input>
+          <button type="submit" className="register-button">
+            Registrarse
+          </button>
         </form>
-        <button>Registrarse</button>
       </div>
     </div>
   );
