@@ -4,6 +4,9 @@ export const esPlankton = (texto: string): boolean => {
   // 🔹 Convertimos a minúsculas y eliminamos caracteres extraños
   const normalizado = texto.toLowerCase().replace(/[^a-z0-9]/g, ""); // 🔹 Elimina caracteres especiales
 
+  // No puede poner algo como plaaaankton
+  const regex = /(p+|p.*)l+a*n+k+t+o*n+/;
+
   // 🔹 Lista de variantes sospechosas
   const variantes = [
     "plankton",
@@ -31,8 +34,11 @@ export const esPlankton = (texto: string): boolean => {
     "pl4nkt0n",
     "p1@ncton",
     "pl4nkt0n",
+    "plank",
   ];
 
   // 🔹 Revisamos si el texto normalizado contiene alguna variante
-  return variantes.some((v) => normalizado.includes(v));
+  return (
+    variantes.some((v) => normalizado.includes(v)) || regex.test(normalizado)
+  );
 };
