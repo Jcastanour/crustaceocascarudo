@@ -26,21 +26,24 @@ export const Register: React.FC = () => {
 
   return (
     <div className="register-container">
-      <div className="register-box">
-        <h2> Registrarse</h2>
-        <form onSubmit={handleRegister}>
-          <label htmlFor="register-name">Nombre:</label>
+      <h2> Registrarse</h2>
+        <form onSubmit={handleRegister} className="register-container-form">
+          
+          <label htmlFor="register-name" className="register-name-label">Usuario:</label>
           <input
+            className="register-name-input"
             type="text"
             id="register-name"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            placeholder="Nombre"
+            placeholder="Usuario"
             required
           ></input>
+          
 
-          <label htmlFor="register-email">Correo:</label>
+          <label htmlFor="register-email" className="register-email-label">Correo:</label>
           <input
+            className="register-email-input"
             type="email"
             id="register-email"
             value={email}
@@ -49,20 +52,21 @@ export const Register: React.FC = () => {
             required
           ></input>
 
-          <label htmlFor="register-password">Contraseña::</label>
+          <label htmlFor="register-password" className="register-password-label">Contraseña:</label>
           <input
+            className="register-password-input"
             type="password"
             id="register-password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            placeholder="Correo"
+            placeholder="Contraseña"
             required
           ></input>
+
           <button type="submit" className="register-button">
             Registrarse
           </button>
         </form>
-      </div>
     </div>
   );
 };

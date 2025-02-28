@@ -2,4 +2,35 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 80%; /* Ajusta el ancho para que no sea demasiado grande */
+  margin: 20px auto; /* Centrado y con margen */
+  padding: 15px;
+}
+
+.tyc ol {
+  list-style: none; /* Elimina la numeración por defecto */
+  counter-reset: item; /* Para numeración personalizada */
+  padding-left: 0; /* Evita el padding por defecto */
+}
+
+.tyc li {
+  counter-increment: item; /* Incrementa el contador */
+  font-size: 18px;
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.87);
+  background-color: #fff;
+  padding: 10px;
+  margin: 8px 0;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  text-align: left; /* Alinea el texto a la izquierda */
+}
+
+.tyc li::before {
+  content: counter(item) ". "; /* Agrega la numeración personalizada */
+  font-weight: bold;
 }
