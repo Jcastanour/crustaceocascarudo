@@ -4,7 +4,7 @@ import { ProductsMocks } from "../mocks/ProductsMocks";
 import { Products } from "../components/Products";
 import "../styles/Products.css";
 
-const expiration = 1000 * 60 * 60; // 1 hora
+const expiration = 1000 * 60 * 5; // 1 hora
 
 export const Menu = () => {
   const [expandedItem, setExpandedItem] = useState<number | null>(null);
