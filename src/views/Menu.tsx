@@ -4,14 +4,22 @@ import { ProductsMocks } from "../mocks/ProductsMocks";
 import { Products } from "../components/Products";
 import "../styles/Products.css";
 
+const expiration = 1000 * 60 * 60; // 1 hora
+
 export const Menu = () => {
   const [expandedItem, setExpandedItem] = useState<number | null>(null);
   const navigate = useNavigate();
 
   useEffect(() => {
-    const passed = localStorage.getItem("planktonPassed");
-    console.log(passed);
-    if (!passed) {
+    const lastReset = localStorage.getItem("planktonPassedTime");
+    const now = Date.now();
+
+    console.log(now - Number(lastReset));
+
+    if (!lastReset || now - Number(lastReset) > expiration) {
+      console.log("Captcha expirado o nunca completado");
+      localStorage.removeItem("planktonPassed");
+      localStorage.removeItem("planktonPassedTime");
       navigate("/PlanktonCaptcha");
     }
   }, [navigate]);
