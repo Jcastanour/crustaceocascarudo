@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
 import { esPlankton } from "../utils/planktonverification";
-import "../styles/Login.css"
+import "../styles/Login.css";
 
 export const Login: React.FC = () => {
   const { login } = useContext(AuthContext);
@@ -15,7 +15,7 @@ export const Login: React.FC = () => {
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
     if (esPlankton(correo) || esPlankton(password)) {
-      alert("🚫 Plankton, no puedes robar la receta secreta.");
+      alert("Plankton, no puedes robar la receta secreta.");
       return;
     }
 
@@ -32,13 +32,12 @@ export const Login: React.FC = () => {
 
   return (
     <div className="login-container">
-      
       <h2>Iniciar sesion</h2>
       <form onSubmit={handleLogin} className="login-container-form">
         {/* Correo */}
         <label className="login-email-label">Correo:</label>
         <input
-        className="login-email-input"
+          className="login-email-input"
           type="email"
           value={correo}
           onChange={(e) => setCorreo(e.target.value)}
@@ -49,7 +48,7 @@ export const Login: React.FC = () => {
         {/* Contraseña */}
         <label className="login-password-label">Contraseña:</label>
         <input
-        className="login-password-input"
+          className="login-password-input"
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
@@ -69,7 +68,12 @@ export const Login: React.FC = () => {
               name="notPlankton"
               required
             />
-            <label htmlFor="notPlankton" className="checkbox-container-plankton-label">Confirmo que no soy Plankton</label>
+            <label
+              htmlFor="notPlankton"
+              className="checkbox-container-plankton-label"
+            >
+              Confirmo que no soy Plankton
+            </label>
           </div>
 
           <div className="checkbox-container-tyc">
@@ -82,7 +86,9 @@ export const Login: React.FC = () => {
               name="tyc"
               required
             />
-            <label htmlFor="tyc" className="checkbox-container-tyc-label">Acepto términos y condiciones</label>
+            <label htmlFor="tyc" className="checkbox-container-tyc-label">
+              Acepto términos y condiciones
+            </label>
           </div>
         </div>
 
@@ -96,7 +102,6 @@ export const Login: React.FC = () => {
       <p className="register-link">
         ¿No tienes una cuenta aún? <Link to="/register">¡Registrate aqui!</Link>
       </p>
-      
     </div>
   );
 };

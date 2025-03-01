@@ -24,7 +24,6 @@ export const Products: React.FC<ProductsProps> = ({
 
       {isExpanded && (
         <div className="product-container-lower">
-          
           <div className="product-container-lower-description">
             <p>{product.description}</p>
           </div>
@@ -34,7 +33,6 @@ export const Products: React.FC<ProductsProps> = ({
           <div className="product-container-lower-buttom">
             <button>Agregar al carrito</button>
           </div>
-          
         </div>
       )}
     </div>

@@ -9,12 +9,12 @@ export const authService = {
     return user || null;
   },
 
-  // 🔹 Función para registrar un usuario (por ahora solo imprime en consola por que aca hace un post a una bd)
+  // Función para registrar un usuario (por ahora solo imprime en consola por que aca hace un post a una bd)
   register: (usuario: string, correo: string, password: string) => {
     console.log("Usuario registrado:", { usuario, correo, password });
   },
 
-  // 🔹 Función para cerrar sesión (puede hacer más cosas en el futuro)
+  // Función para cerrar sesión (puede hacer más cosas en el futuro)
   logout: () => {
     console.log("Sesión cerrada");
   },
