@@ -1,0 +1,97 @@
+.captcha-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 100px;
+}
+
+.captcha-buttons{
+    display: grid;
+    grid-template-columns: 35% 65%;
+    grid-template-rows: repeat(2,1fr);
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+}
+
+
+.no-button{
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+
+}
+
+.yes-button{
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+}
+
+.no-button,
+.yes-button{
+    justify-self: center;
+    width: 80%; /* Asegura que ocupe el ancho disponible */
+    padding: 8px; /* Aumenta el tamaño interno */
+    font-size: 16px; /* Ajusta el tamaño del texto */
+    border: 2px solid black; /* Borde negro más notorio */
+    border-radius: 3px; /* Bordes ligeramente redondeados */
+    outline: none; /* Evita el borde azul al hacer clic */
+    transition: all 0.3s ease-in-out; /* Suaviza cambios al interactuar */
+    min-width: 170px; /* Define un ancho mínimo */
+    max-width: 300px; /* Evita que sea demasiado ancho */
+}
+
+.plankton-image{
+    grid-column: 1 / 2;
+    grid-row: 1 / 3;
+    max-width: 100px; /* Ajusta según sea necesario */
+    height: auto;
+    padding-right: 30px;
+}
+
+
+
+/*Para cuando dicen que si*/
+.captcha-container-plankton{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.captcha-container-plankton .grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 20% 20%;
+    align-items: center;
+    justify-content: center;
+    row-gap: 15px;
+}
+
+.cangrejo-img{
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    max-width: 300px; /* Ajusta según sea necesario */
+    height: auto;
+}
+
+.dumb-text{
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+    align-self: center;
+    color: grey;
+    font-size: large;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.plankton-yes-image{
+    grid-column: 1 / 2;
+    grid-row: 3 / 4;
+    max-width: 150px; /* Ajusta según sea necesario */
+    height: auto;
+}
+
+.cangrejo-img,
+.plankton-yes-image{
+    align-self: center;
+    justify-self: center;
+
+}
