@@ -35,7 +35,7 @@ export const Navbar: React.FC = () => {
           )}
 
           {user?.rol === "cocinero" && (
-            <Link to="/ordenes" className="navbar-link">Ver Órdenes</Link>
+            <Link to="/Chef_Orders" className="navbar-link">Ver pedidos</Link>
           )}
         </div>
 
