@@ -3,18 +3,21 @@
     "id": 1,
     "nombre": "Usuario Demo",
     "email": "test@email.com",
-    "password": "1234"
+    "password": "1234",
+    "role": "admin"
   },
   {
     "id": 2,
     "nombre": "Otro Usuario",
     "email": "otro@email.com",
-    "password": "5678"
+    "password": "5678",
+    "role": "cocinero"
   },
   {
     "id": 3,
     "nombre": "Alejo",
     "email": "alejo@gmail.com",
-    "password": "1234"
+    "password": "1234",
+    "role": "usuario"
   }
 ]
