@@ -13,10 +13,10 @@ app.use(cors());
 
 let users = [];  // Aquí guardamos usuarios temporalmente
 let products = [ // Lista de productos simulados
-    { id: 1, name: "Pizza", price: 10 },
-    { id: 2, name: "Hamburguesa", price: 8 },
-    { id: 3, name: "Sushi", price: 12 }
-];
+    { id: 1, name: "Pizza", price: 10000 },
+    { id: 2, name: "Hamburguesa", price: 8000 },
+    { id: 3, name: "Sushi", price: 12000 }
+];  
 
 
 app.get("/", (req, res) => {

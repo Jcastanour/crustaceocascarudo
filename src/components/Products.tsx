@@ -1,3 +1,5 @@
+import { useState } from "react";
+import { useCart } from "../context/CartContext";
 import { Product } from "../types/Product";
 import "../styles/Products.css";
 import { QuantitySelector } from "./QuantitySelector";
@@ -13,6 +15,10 @@ export const Products: React.FC<ProductsProps> = ({
   isExpanded,
   onToggle,
 }) => {
+  const { addToCart } = useCart();
+  const [quantity, setQuantity] = useState(1);
+
+
   return (
     <div className="product-container">
       <div className="product-container-upper" onClick={onToggle}>
@@ -29,10 +35,10 @@ export const Products: React.FC<ProductsProps> = ({
             <p>{product.description}</p>
           </div>
           <div className="product-container-lower-quantitySelector">
-            <QuantitySelector productId={product.id} />
+            <QuantitySelector productId={product.id} quantity={quantity} setQuantity={setQuantity}/>
           </div>
           <div className="product-container-lower-buttom">
-            <button>Agregar al carrito</button>
+            <button onClick={() => addToCart(product,quantity)}>Agregar al carrito</button>
           </div>
           
         </div>
