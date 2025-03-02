@@ -16,6 +16,7 @@ import { Orders } from "./views/Orders";
 import { ChefPanel } from "./views/ChefPanel";
 import { AdminPanel } from "./views/AdminPanel";
 import { ProtectedRoute } from "./components/ProtectedRoute";
+import { NotFound } from "./views/NotFound";
 
 export const App: React.FC = () => {
   return (
@@ -64,6 +65,7 @@ export const App: React.FC = () => {
                   </ProtectedRoute>
                 }
               />
+              <Route path="*" element={<NotFound />} />
             </Routes>
           </div>
           <Footer />
