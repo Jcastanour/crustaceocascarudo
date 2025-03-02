@@ -1,4 +1,3 @@
-import users from "../mocks/users.json";
 import { Usuario } from "../types/Usuario";
 
 export const authService = {
@@ -19,12 +18,12 @@ export const authService = {
       }
 
       const data = await response.json();
-      console.log("Respuesta del backend:", data);
+      // console.log("Respuesta del backend:", data);
 
       //devuelve { usuario: { ... } }
       return data.usuario;
     } catch (error) {
-      console.error("Error en authService.login:", error);
+      // console.error("Error en authService.login:", error);
       return null;
     }
   },

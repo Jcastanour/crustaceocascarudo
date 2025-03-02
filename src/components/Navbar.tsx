@@ -19,28 +19,31 @@ export const Navbar: React.FC = () => {
         </div>
 
         <div className="mid-component">
-          <Link to="/" className="navbar-link">Home</Link>
+          <Link to="/" className="navbar-link">
+            Home
+          </Link>
 
-          {/* Mostrar "Ver Menú" solo si el usuario no tiene sesión o si es "usuario" */}
-          {(!user || user.rol === "usuario") && (
+          {/* Mostrar "Ver Menú" solo si el cliente no tiene sesión o si es "cliente" */}
+          {(!user || user.rol === "cliente") && (
             <Link to="/menu" className="navbar-link">
               Ver Menú
             </Link>
           )}
           {user?.rol === "admin" && (
-            <>
-              <Link to="/dashboard" className="navbar-link">Dashboard</Link>
-              <Link to="/usuarios" className="navbar-link">Gestionar Usuarios</Link>
-            </>
+            <Link to="/AdminPanel" className="navbar-link">
+              Panel admin
+            </Link>
           )}
 
-          {user?.rol === "cocinero" && (
-            <Link to="/ordenes" className="navbar-link">Ver Órdenes</Link>
+          {user?.rol === "chef" && (
+            <Link to="/ChefPanel" className="navbar-link">
+              Panel chef
+            </Link>
           )}
         </div>
 
         <div className="right-component">
-          {user?.rol === "usuario" && (
+          {user?.rol === "cliente" && (
             <Link to="/cart" className="navbar-cart">
               <BsCart3 />
             </Link>

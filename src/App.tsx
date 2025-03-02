@@ -12,6 +12,10 @@ import { Register } from "./views/Register";
 import { PlanktonCaptcha } from "./components/PlanktonCaptcha";
 import { CartProvider } from "./context/CartContext";
 import { Paid } from "./views/Paid";
+import { Orders } from "./views/Orders";
+import { ChefPanel } from "./views/ChefPanel";
+import { AdminPanel } from "./views/AdminPanel";
+import { ProtectedRoute } from "./components/ProtectedRoute";
 
 export const App: React.FC = () => {
   return (
@@ -25,10 +29,41 @@ export const App: React.FC = () => {
               <Route path="/PlanktonCaptcha" element={<PlanktonCaptcha />} />
               <Route path="/Menu" element={<Menu />} />
               <Route path="/Cart" element={<Cart />} />
-              <Route path="/paid" element={<Paid />} />
               <Route path="/Login" element={<Login />} />
               <Route path="/Register" element={<Register />} />
               <Route path="/Tyc" element={<Tyc />} />
+              <Route
+                path="/Orders"
+                element={
+                  <ProtectedRoute allowedRoles={["cliente"]}>
+                    <Orders />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/paid"
+                element={
+                  <ProtectedRoute allowedRoles={["cliente"]}>
+                    <Paid />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/ChefPanel"
+                element={
+                  <ProtectedRoute allowedRoles={["chef"]}>
+                    <ChefPanel />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/AdminPanel"
+                element={
+                  <ProtectedRoute allowedRoles={["admin"]}>
+                    <AdminPanel />
+                  </ProtectedRoute>
+                }
+              />
             </Routes>
           </div>
           <Footer />
