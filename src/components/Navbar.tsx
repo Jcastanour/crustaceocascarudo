@@ -25,6 +25,9 @@ export const Navbar: React.FC = () => {
           <Link to="/menu" className="navbar-link">
             Ver Menú
           </Link>
+          {user?.rol === "admin" && <Link to="/admin" className="navbar-link">Panel de Admin</Link>}
+          {user?.rol === "chef" && <Link to="/chef" className="navbar-link">Panel de Chef</Link>}
+        
         </div>
         <div className="right-component">
           <Link to="/cart" className="navbar-cart">

@@ -1,19 +1,20 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import PlanktonBlock from "../assets/PlanktonBlock.png";
 import doncrangejo from "../assets/doncangrejo.png";
 import planktonSound from "../assets/planktonSound.mp3";
 import "../styles/PlanktonCaptcha.css";
+import { AuthContext } from "../context/AuthContext";
 
-const expiration = 1000 * 10;
 
 export const PlanktonCaptcha = () => {
   const [isPlankton, setIsPlankton] = useState<boolean>(false);
   const navigate = useNavigate();
+  const {setPlanktonPassed} = useContext(AuthContext);
 
   const handleResponse = (isPlankton: boolean) => {
     if (!isPlankton) {
-      localStorage.setItem("planktonPassed", "true");
+      setPlanktonPassed(true);
       localStorage.setItem("planktonPassedTime", Date.now().toString());
       navigate("/menu");
     } else {

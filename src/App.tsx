@@ -10,6 +10,9 @@ import { Tyc } from "./views/Tyc";
 import { AuthProvider } from "./context/AuthContext";
 import { Register } from "./views/Register";
 import { PlanktonCaptcha } from "./components/PlanktonCaptcha";
+import { ProtectedRoute } from "./services/ProtectedRoute";
+import { AdminDashboard } from "./views/AdminDashboard";
+import { ChefDashboard } from "./views/ChefDashboard";
 
 export const App: React.FC = () => {
   return (
@@ -25,6 +28,24 @@ export const App: React.FC = () => {
             <Route path="/Login" element={<Login />} />
             <Route path="/Register" element={<Register />} />
             <Route path="/Tyc" element={<Tyc />} />
+            
+            <Route
+              path="/admin"
+              element={
+                <ProtectedRoute role="admin">
+                  <AdminDashboard />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/chef"
+              element={
+                <ProtectedRoute role="chef">
+                  <ChefDashboard />
+                </ProtectedRoute>
+              }
+            />
+
           </Routes>
         </div>
         <Footer />
