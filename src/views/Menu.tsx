@@ -4,7 +4,8 @@ import { ProductsMocks } from "../mocks/ProductsMocks";
 import { Products } from "../components/Products";
 import "../styles/Products.css";
 
-const expiration = 1000 * 60 * 5; // 1 hora
+const expiration = 1000 * 60 * 1; // 1 minutes
+console.log("expiration:", expiration);
 
 export const Menu = () => {
   const [expandedItem, setExpandedItem] = useState<number | null>(null);
@@ -14,7 +15,7 @@ export const Menu = () => {
     const lastReset = localStorage.getItem("planktonPassedTime");
     const now = Date.now();
 
-    console.log(now - Number(lastReset));
+    console.log("resta:", now - Number(lastReset));
 
     if (!lastReset || now - Number(lastReset) > expiration) {
       console.log("Captcha expirado o nunca completado");
