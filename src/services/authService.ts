@@ -1,10 +1,11 @@
 import users from "../mocks/users.json";
+import { Usuario } from "../types/Usuario";
 
 export const authService = {
   // Funcion para iniciar sesion
-  login: (email: string, password: string) => {
+  login: (email: string, password: string): Usuario | null => {
     const user = users.find(
-      (user) => user.email === email && user.password === password
+      (user: Usuario) => user.email === email && user.password === password
     );
     return user || null;
   },
