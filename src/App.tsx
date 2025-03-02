@@ -10,10 +10,14 @@ import { Tyc } from "./views/Tyc";
 import { AuthProvider } from "./context/AuthContext";
 import { Register } from "./views/Register";
 import { PlanktonCaptcha } from "./components/PlanktonCaptcha";
+import { CartProvider } from "./context/CartContext";
+import { Paid } from "./views/Paid";
 
 export const App: React.FC = () => {
   return (
     <AuthProvider>
+      <CartProvider>
+
       <div className="app-container">
         <Navbar />
         <div className="body_container">
@@ -22,6 +26,7 @@ export const App: React.FC = () => {
             <Route path="/PlanktonCaptcha" element={<PlanktonCaptcha />} />
             <Route path="/Menu" element={<Menu />} />
             <Route path="/Cart" element={<Cart />} />
+            <Route path="/paid" element={<Paid />} />
             <Route path="/Login" element={<Login />} />
             <Route path="/Register" element={<Register />} />
             <Route path="/Tyc" element={<Tyc />} />
@@ -29,6 +34,7 @@ export const App: React.FC = () => {
         </div>
         <Footer />
       </div>
+      </CartProvider>
     </AuthProvider>
   );
 };

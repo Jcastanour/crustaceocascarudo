@@ -3,15 +3,17 @@ import "../styles/Products.css";
 
 interface QuantitySelectorProps {
   productId: number;
+  quantity: number;
+  setQuantity: (quantity: number) => void;
 }
 
 export const QuantitySelector: React.FC<QuantitySelectorProps> = ({
   productId,
+  quantity,
+  setQuantity,
 }) => {
-  const [quantity, setQuantity] = useState(1);
-
-  const aumentar = () => setQuantity((prev) => prev + 1);
-  const decrementar = () => setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
+  const aumentar = () => setQuantity(quantity + 1);
+  const decrementar = () => setQuantity(quantity > 1 ? quantity - 1 : 0);
 
   return (
     <div className="quantity-selector">
