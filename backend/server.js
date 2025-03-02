@@ -1,29 +1,35 @@
-require("dotenv").config();
+// server.js
 const express = require("express");
 const cors = require("cors");
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
+require("dotenv").config();
+const createConnection = require("./db");
+const authRoutes = require("./routes/AuthRoutes");
 
-const app = express();
-const PORT = process.env.PORT || 3001;
-const SECRET_KEY = "secreto"; // Normalmente esto iría en .env
+(async () => {
+  const app = express();
+  const PORT = process.env.PORT || 3000;
 
-app.use(express.json());
-app.use(cors());
+  // Middlewares
+  app.use(cors());
+  app.use(express.json()); // Permite interpretar JSON en el body
 
-let users = [];  // Aquí guardamos usuarios temporalmente
-let products = [ // Lista de productos simulados
-    { id: 1, name: "Pizza", price: 10000 },
-    { id: 2, name: "Hamburguesa", price: 8000 },
-    { id: 3, name: "Sushi", price: 12000 }
-];  
+  // Establece la conexión a la BD y la guarda en app.locals o usando app.set()
+  const connection = await createConnection();
+  app.set("dbConnection", connection);
+  // Ahora, en cualquier ruta, se podrá acceder a esta conexión usando req.app.get('dbConnection')
 
+  // Montar las rutas de autenticación bajo el prefijo /api
+  app.use("/api", authRoutes);
 
-app.get("/", (req, res) => {
-    res.send("Servidor funcionando");
-});
+  // Ruta de prueba
+  app.get("/", (req, res) => {
+    res.send(
+      "Backend con Express y MySQL (con conexión persistente) funcionando!"
+    );
+  });
 
-app.listen(PORT, () => {
-    console.log(`Servidor corriendo en http://localhost:${PORT}`);
-});
-
+  // Inicia el servidor
+  app.listen(PORT, () => {
+    console.log(`Servidor corriendo en el puerto ${PORT}`);
+  });
+})();

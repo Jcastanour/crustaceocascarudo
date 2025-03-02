@@ -6,15 +6,19 @@ import { authService } from "../services/authService";
 
 interface AuthContextType {
   user: Usuario | null;
-  login: (correo: string, password: string) => boolean;
-  register: (usuario: string, correo: string, password: string) => void;
+  login: (email: string, password: string) => Promise<boolean>;
+  register: (
+    nombre: string,
+    email: string,
+    password: string
+  ) => Promise<boolean>;
   logout: () => void;
 }
 
 export const AuthContext = createContext<AuthContextType>({
   user: null,
-  login: () => false,
-  register: () => {},
+  login: async () => false,
+  register: async () => false,
   logout: () => {},
 });
 
@@ -33,8 +37,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     }
   }, [user]);
 
-  const login = (correo: string, password: string): boolean => {
-    const usuario = authService.login(correo, password);
+  const login = async (email: string, password: string): Promise<boolean> => {
+    const usuario = await authService.login(email, password);
+    console.log(usuario);
     if (usuario) {
       setUser(usuario);
       return true;
@@ -42,8 +47,13 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     return false;
   };
 
-  const register = (usuario: string, correo: string, password: string) => {
-    authService.register(usuario, correo, password);
+  const register = async (
+    nombre: string,
+    email: string,
+    password: string
+  ): Promise<boolean> => {
+    const result = await authService.register(nombre, email, password);
+    return result;
   };
 
   const logout = () => {

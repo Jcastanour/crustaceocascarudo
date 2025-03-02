@@ -1,0 +1,54 @@
+const express = require("express");
+const router = express.Router();
+
+// Login
+router.post("/login", async (req, res) => {
+  const { email, password } = req.body;
+  // Buscar usuario y contraseña en la base de datos
+  const query = "SELECT * FROM usuarios WHERE email = ? AND password = ?";
+  try {
+    const connection = req.app.get("dbConnection");
+    const [results] = await connection.query(query, [email, password]);
+    if (results.length === 0) {
+      return res.status(401).json({ message: "Credenciales incorrectas" });
+    }
+    const usuario = results[0];
+    console.log(usuario);
+    res.json({ message: "Login exitoso", usuario });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Error al intentar loguear al usuario" });
+  }
+});
+
+router.post("/register", async (req, res) => {
+  const { nombre, email, password, rol } = req.body;
+
+  try {
+    const connection = req.app.get("dbConnection");
+
+    // Verificar si el email ya está registrado
+
+    const [selectResults] = await connection.query(
+      "SELECT * FROM usuarios WHERE email = ?",
+      [email]
+    );
+    if (selectResults.length > 0) {
+      return res.status(400).json({ message: "El email ya está registrado" });
+    }
+    const [insertResults] = await connection.query(
+      "INSERT INTO usuarios (nombre, email, password, rol) VALUES (?, ?, ?, ?)",
+      [nombre, email, password, rol || "cliente"]
+    );
+
+    res.status(201).json({
+      message: "Usuario registrado exitosamente",
+      userId: insertResults.insertId,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Error al intentar registrar al usuario" });
+  }
+});
+
+module.exports = router;

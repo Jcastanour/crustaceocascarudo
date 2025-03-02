@@ -3,20 +3,57 @@ import { Usuario } from "../types/Usuario";
 
 export const authService = {
   // Funcion para iniciar sesion
-  login: (email: string, password: string): Usuario | null => {
-    const user = users.find(
-      (user: Usuario) => user.email === email && user.password === password
-    );
-    return user || null;
+  login: async (email: string, password: string): Promise<Usuario | null> => {
+    try {
+      const response = await fetch("http://localhost:3000/api/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      // error
+      if (!response.ok) {
+        return null;
+      }
+
+      const data = await response.json();
+      console.log("Respuesta del backend:", data);
+
+      //devuelve { usuario: { ... } }
+      return data.usuario;
+    } catch (error) {
+      console.error("Error en authService.login:", error);
+      return null;
+    }
   },
 
-  // Función para registrar un usuario (por ahora solo imprime en consola por que aca hace un post a una bd)
-  register: (usuario: string, correo: string, password: string) => {
-    console.log("Usuario registrado:", { usuario, correo, password });
+  // Función para registrar un usuario
+  register: async (
+    nombre: string,
+    email: string,
+    password: string,
+    rol?: string
+  ): Promise<boolean> => {
+    try {
+      const response = await fetch("http://localhost:3000/api/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ nombre, email, password, rol }),
+      });
+
+      return response.ok;
+    } catch (error) {
+      console.error("Error en authService.register:", error);
+      return false;
+    }
   },
 
   // Función para cerrar sesión (puede hacer más cosas en el futuro)
   logout: () => {
-    console.log("Sesión cerrada");
+    localStorage.removeItem("user");
   },
 };

@@ -17,23 +17,22 @@ export const App: React.FC = () => {
   return (
     <AuthProvider>
       <CartProvider>
-
-      <div className="app-container">
-        <Navbar />
-        <div className="body_container">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/PlanktonCaptcha" element={<PlanktonCaptcha />} />
-            <Route path="/Menu" element={<Menu />} />
-            <Route path="/Cart" element={<Cart />} />
-            <Route path="/paid" element={<Paid />} />
-            <Route path="/Login" element={<Login />} />
-            <Route path="/Register" element={<Register />} />
-            <Route path="/Tyc" element={<Tyc />} />
-          </Routes>
+        <div className="app-container">
+          <Navbar />
+          <div className="body_container">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/PlanktonCaptcha" element={<PlanktonCaptcha />} />
+              <Route path="/Menu" element={<Menu />} />
+              <Route path="/Cart" element={<Cart />} />
+              <Route path="/paid" element={<Paid />} />
+              <Route path="/Login" element={<Login />} />
+              <Route path="/Register" element={<Register />} />
+              <Route path="/Tyc" element={<Tyc />} />
+            </Routes>
+          </div>
+          <Footer />
         </div>
-        <Footer />
-      </div>
       </CartProvider>
     </AuthProvider>
   );
