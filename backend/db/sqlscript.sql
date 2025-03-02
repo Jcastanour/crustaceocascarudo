@@ -22,8 +22,8 @@ CREATE TABLE IF NOT EXISTS productos (
     id INT PRIMARY KEY AUTO_INCREMENT,
     nombre VARCHAR(100) NOT NULL,
     descripcion TEXT NOT NULL,
-    precio DECIMAL(10,2) NOT NULL DEFAULT 0,
-	imagen VARCHAR(255)
+    price DECIMAL(10,2) NOT NULL DEFAULT 0,
+	image VARCHAR(255)
 );
 
 -- Insertar valores iniciales en Productos

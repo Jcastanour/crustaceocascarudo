@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const jwt = require("jsonwebtoken");
 
 // Login
 router.post("/login", async (req, res) => {
@@ -13,7 +14,8 @@ router.post("/login", async (req, res) => {
       return res.status(401).json({ message: "Credenciales incorrectas" });
     }
     const usuario = results[0];
-    console.log(usuario);
+    // console.log(results);
+    // console.log(usuario);
     res.json({ message: "Login exitoso", usuario });
   } catch (error) {
     console.error(error);
@@ -48,6 +50,20 @@ router.post("/register", async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Error al intentar registrar al usuario" });
+  }
+});
+
+router.post("/captcha", async (req, res) => {
+  try {
+    const payload = { captchaPassed: true };
+    const token = jwt.sign(payload, process.env.JWT_SECRET, {
+      expiresIn: process.env.JWT_EXPIRATION, // Ejemplo: "1m"
+    });
+
+    res.json({ message: "Captcha validado", token });
+  } catch (error) {
+    console.error("Error en /captcha:", error);
+    res.status(500).json({ message: "Error al validar captcha" });
   }
 });
 
