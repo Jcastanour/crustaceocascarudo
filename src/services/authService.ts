@@ -52,7 +52,6 @@ export const authService = {
     }
   },
 
-  // Función para cerrar sesión (puede hacer más cosas en el futuro)
   logout: () => {
     localStorage.removeItem("user");
   },
