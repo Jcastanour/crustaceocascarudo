@@ -57,7 +57,7 @@ router.post("/captcha", async (req, res) => {
   try {
     const payload = { captchaPassed: true };
     const token = jwt.sign(payload, process.env.JWT_SECRET, {
-      expiresIn: process.env.JWT_EXPIRATION, // Ejemplo: "1m"
+      expiresIn: 30, // Ejemplo: "1m"
     });
 
     res.json({ message: "Captcha validado", token });

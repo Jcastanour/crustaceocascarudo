@@ -1,18 +1,20 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { esPlankton } from "../utils/planktonverification";
 import "../styles/Login.css";
 
 export const Login: React.FC = () => {
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
+  const location = useLocation();
   const [correo, setCorreo] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [notPlankton, setNotPlankton] = useState<boolean>(false);
   const [termsAccepted, setTermsAccepted] = useState<boolean>(false);
+  const [errorMsg, setErrorMsg] = useState<string>("");
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     if (esPlankton(correo) || esPlankton(password)) {
       alert("Plankton, no puedes robar la receta secreta.");
@@ -23,9 +25,14 @@ export const Login: React.FC = () => {
       alert("Confirmar que no eres Plankton");
       return;
     }
-    if (login(correo, password)) {
-      navigate("/");
+
+    const success = await login(correo, password);
+    if (success) {
+      // Si hay redirección "from" en el state, úsalo; si no, redirige al home
+      const from = (location.state as { from?: string })?.from || "/";
+      navigate(from);
     } else {
+      // Si el login falla, muestra el mensaje de error
       alert("Usuario o contraseña incorrectos");
     }
   };

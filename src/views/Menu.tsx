@@ -3,9 +3,12 @@ import { useNavigate } from "react-router-dom";
 import { ProductsMocks } from "../mocks/ProductsMocks";
 import { Products } from "../components/Products";
 import "../styles/Products.css";
+import { jwtDecode } from "jwt-decode";
 
-const expiration = 1000 * 60 * 1; // 1 minutes
-// console.log("expiration:", expiration);
+interface CaptchaPayload {
+  exp: number; // Expiración en segundos desde Epoch
+  captchaPassed: boolean;
+}
 
 export const Menu = () => {
   const [expandedItem, setExpandedItem] = useState<number | null>(null);
@@ -14,10 +17,24 @@ export const Menu = () => {
   useEffect(() => {
     const token = localStorage.getItem("captchaToken");
     if (!token) {
-      console.log("No hay token de captcha, redirigiendo");
+      navigate("/PlanktonCaptcha");
+      return;
+    }
+
+    try {
+      const decoded = jwtDecode<CaptchaPayload>(token);
+      const currentTime = Date.now() / 1000; // en segundos
+
+      if (decoded.exp < currentTime) {
+        // Token expirado, redirige al captcha
+        localStorage.removeItem("captchaToken");
+        navigate("/PlanktonCaptcha");
+      }
+    } catch (error) {
+      console.error("Error decodificando token de captcha:", error);
+      localStorage.removeItem("captchaToken");
       navigate("/PlanktonCaptcha");
     }
-    // Opcional: Podrías validar el token haciendo una petición al backend.
   }, [navigate]);
 
   return (
