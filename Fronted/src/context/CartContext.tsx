@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, use, useContext, useEffect, useState } from "react";
 import { Product } from "../types/Product";
 
 interface CartItem extends Product {
@@ -20,6 +20,19 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
 }) => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
+  useEffect(() => {
+    const storedCart = localStorage.getItem("cart");
+    if (storedCart) {
+      setCartItems(JSON.parse(storedCart));
+    }
+  }, []);
+
+  useEffect(() => {
+    if (cartItems.length === 0) localStorage.removeItem("cart");
+
+    localStorage.setItem("cart", JSON.stringify(cartItems));
+  }, [cartItems]);
+
   const addToCart = (product: Product, quantity: number) => {
     setCartItems((prevCart) => {
       const existingItem = prevCart.find((item) => item.id === product.id);
@@ -35,7 +48,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
   };
 
   const updateQuantity = (id: number, newQuantity: number) => {
-    if (newQuantity <= 0) return;
+    if (newQuantity <= 0) removeFromCart(id);
     setCartItems((prevCart) =>
       prevCart.map((item) =>
         item.id === id ? { ...item, quantity: newQuantity } : item

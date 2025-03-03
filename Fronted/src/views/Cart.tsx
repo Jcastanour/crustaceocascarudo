@@ -4,7 +4,7 @@ import "../styles/Cart.css";
 import { QuantitySelector } from "../components/QuantitySelector";
 
 export const Cart: React.FC = () => {
-  const { cartItems, removeFromCart, clearCart } = useCart();
+  const { cartItems, clearCart, updateQuantity } = useCart();
   const navigate = useNavigate();
 
   return (
@@ -28,14 +28,25 @@ export const Cart: React.FC = () => {
                   <QuantitySelector
                     productId={item.id}
                     quantity={item.quantity}
-                    setQuantity={(newQuantity) => {
-                      if (newQuantity === 0) removeFromCart(item.id); //  Si llega a 0, se elimina el producto
-                    }}
+                    setQuantity={(newQuantity) =>
+                      updateQuantity(item.id, newQuantity)
+                    }
                   />
                 </div>
+                <p>Total: ${item.price * item.quantity}</p>
               </div>
             </div>
           ))}
+          <div className="cart-summary">
+            <h2>Total del carrito</h2>
+            <p>
+              $
+              {cartItems.reduce(
+                (acc, item) => acc + item.price * item.quantity,
+                0
+              )}
+            </p>
+          </div>
           <button
             className="pay-button"
             onClick={() => {
