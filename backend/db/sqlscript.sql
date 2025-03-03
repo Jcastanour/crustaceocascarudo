@@ -3,9 +3,9 @@
 CREATE DATABASE IF NOT EXISTS crustaceodb;
 USE crustaceodb;
 
-DROP TABLE Usuarios
-drop table Productos
-drop table Pedidos
+DROP TABLE usuarios
+drop table productos
+drop table pedidos
 drop table usuario
 drop table product
 drop table pedido
