@@ -65,7 +65,7 @@ export const App: React.FC = () => {
                   </ProtectedRoute>
                 }
               />
-              <Route path="*" element={<NotFound />} />
+              {/*   <Route path="*" element={<NotFound />} /> */}
             </Routes>
           </div>
           <Footer />

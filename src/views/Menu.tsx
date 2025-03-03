@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ProductsMocks } from "../mocks/ProductsMocks";
 import { Products } from "../components/Products";
 import "../styles/Products.css";
 import { jwtDecode } from "jwt-decode";
+import { productService } from "../services/productService";
+import { Product } from "../types/Product";
 
 interface CaptchaPayload {
   exp: number; // Expiración en segundos desde Epoch
@@ -12,6 +13,7 @@ interface CaptchaPayload {
 
 export const Menu = () => {
   const [expandedItem, setExpandedItem] = useState<number | null>(null);
+  const [products, setProducts] = useState<Product[]>([]);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -37,9 +39,19 @@ export const Menu = () => {
     }
   }, [navigate]);
 
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const data = await productService.getProducts();
+
+      console.log("Productos recibidos:", data);
+      setProducts(data);
+    };
+    fetchProducts();
+  }, []);
+
   return (
     <div className="menu-container">
-      {ProductsMocks.map((product) => (
+      {products.map((product) => (
         <Products
           key={product.id}
           product={product}

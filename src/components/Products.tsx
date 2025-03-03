@@ -18,6 +18,7 @@ export const Products: React.FC<ProductsProps> = ({
   const { addToCart } = useCart();
   const [quantity, setQuantity] = useState(1);
 
+  console.log("Renderizando producto:", product);
 
   return (
     <div className="product-container">
@@ -34,10 +35,16 @@ export const Products: React.FC<ProductsProps> = ({
             <p>{product.description}</p>
           </div>
           <div className="product-container-lower-quantitySelector">
-            <QuantitySelector productId={product.id} quantity={quantity} setQuantity={setQuantity}/>
+            <QuantitySelector
+              productId={product.id}
+              quantity={quantity}
+              setQuantity={setQuantity}
+            />
           </div>
           <div className="product-container-lower-buttom">
-            <button onClick={() => addToCart(product,quantity)}>Agregar al carrito</button>
+            <button onClick={() => addToCart(product, quantity)}>
+              Agregar al carrito
+            </button>
           </div>
         </div>
       )}

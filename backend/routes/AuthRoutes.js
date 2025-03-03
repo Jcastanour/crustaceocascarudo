@@ -39,7 +39,7 @@ router.post("/register", async (req, res) => {
       return res.status(400).json({ message: "El email ya está registrado" });
     }
     const [insertResults] = await connection.query(
-      "INSERT INTO usuarios (nombre, email, password, rol) VALUES (?, ?, ?, ?)",
+      "INSERT INTO usuario (nombre, email, password, rol) VALUES (?, ?, ?, ?)",
       [nombre, email, password, rol || "cliente"]
     );
 
@@ -64,6 +64,20 @@ router.post("/captcha", async (req, res) => {
   } catch (error) {
     console.error("Error en /captcha:", error);
     res.status(500).json({ message: "Error al validar captcha" });
+  }
+});
+
+router.get("/productos", async (req, res) => {
+  try {
+    const connection = req.app.get("dbConnection");
+    const [results] = await connection.query("SELECT * FROM product");
+    res.json({ productos: results });
+    console.log(results);
+  } catch (error) {
+    console.error(error);
+    res
+      .status(500)
+      .json({ message: "Error al intentar obtener los productos" });
   }
 });
 
