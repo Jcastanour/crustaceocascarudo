@@ -32,7 +32,7 @@ router.post("/register", async (req, res) => {
     // Verificar si el email ya está registrado
 
     const [selectResults] = await connection.query(
-      "SELECT * FROM usuarios WHERE email = ?",
+      "SELECT * FROM usuario WHERE email = ?",
       [email]
     );
     if (selectResults.length > 0) {
