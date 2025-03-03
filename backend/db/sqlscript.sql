@@ -10,7 +10,7 @@ drop table usuario
 drop table product
 drop table pedido
 
--- Tabla de Usuarios (Clientes, Chefs, Administradores)
+-- Tabla de Usuarios (Cliegointes, Chefs, Administradores)
 CREATE TABLE IF NOT EXISTS usuario (
     id INT PRIMARY KEY AUTO_INCREMENT,
     nombre VARCHAR(50) NOT NULL,
