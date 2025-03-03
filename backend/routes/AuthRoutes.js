@@ -81,4 +81,27 @@ router.get("/productos", async (req, res) => {
   }
 });
 
+router.post("/pedidos", async (req, res) => {
+  const { id_cliente, productos } = req.body;
+
+  console.log("id_cliente", id_cliente);
+  console.log("productos", productos);
+  try {
+    const connection = req.app.get("dbConnection");
+    const { id_cliente, productos } = req.body;
+
+    for (let producto of productos) {
+      const { id_producto, cantidad_producto } = producto;
+
+      const [insertResults] = await connection.query(
+        "INSERT INTO pedido (id_producto, cantidad_producto, id_cliente, estado) VALUES (?, ?, ?, 'pendiente')",
+        [id_producto, cantidad_producto, id_cliente]
+      );
+      res.status(201).json({ message: "Pedido registrado exitosamente" });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Error al intentar registrar el pedido" });
+  }
+});
 module.exports = router;

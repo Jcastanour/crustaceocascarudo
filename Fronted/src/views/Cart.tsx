@@ -2,10 +2,40 @@ import { useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 import "../styles/Cart.css";
 import { QuantitySelector } from "../components/QuantitySelector";
+import { realizarPago } from "../services/pedidoService";
+import { AuthContext } from "../context/AuthContext";
+import { useContext } from "react";
 
 export const Cart: React.FC = () => {
   const { cartItems, clearCart, updateQuantity } = useCart();
+  const { user } = useContext(AuthContext);
+
   const navigate = useNavigate();
+
+  const handlePago = async () => {
+    if (!user) {
+      alert("Debes iniciar sesión para pagar.");
+      return;
+    }
+
+    const id_cliente = user.id; // Obtenemos el id del usuario autenticado
+
+    // Preparamos los productos del carrito para enviarlos
+    const productos = cartItems.map((item) => ({
+      id_producto: item.id,
+      cantidad_producto: item.quantity,
+    }));
+
+    try {
+      await realizarPago({ productos, id_cliente });
+      clearCart();
+      localStorage.removeItem("cart");
+      navigate("/paid");
+    } catch (error) {
+      console.error("Error al procesar el pedido:", error);
+      alert("Hubo un error al procesar el pedido");
+    }
+  };
 
   return (
     <div className="cart-container">
@@ -47,13 +77,7 @@ export const Cart: React.FC = () => {
               )}
             </p>
           </div>
-          <button
-            className="pay-button"
-            onClick={() => {
-              clearCart(); // Vacía el carrito después del pago
-              navigate("/paid");
-            }}
-          >
+          <button className="pay-button" onClick={handlePago}>
             Pagar
           </button>
         </div>

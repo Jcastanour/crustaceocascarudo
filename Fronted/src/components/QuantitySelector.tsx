@@ -1,4 +1,3 @@
-import { useState } from "react";
 import "../styles/Products.css";
 
 interface QuantitySelectorProps {

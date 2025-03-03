@@ -2,12 +2,13 @@
 CREATE DATABASE IF NOT EXISTS crustaceodb;
 USE crustaceodb;
 
-DROP TABLE usuarios
-drop table productos
-drop table pedidos
-drop table usuario
-drop table product
-drop table pedido
+
+drop table IF EXISTS productos;
+DROP TABLE IF EXISTS usuarios;
+drop table IF EXISTS pedidos;
+drop table IF EXISTS product;
+drop table IF EXISTS pedido;
+drop table IF EXISTS usuario;
 
 -- Tabla de Usuarios (Cliegointes, Chefs, Administradores)
 CREATE TABLE IF NOT EXISTS usuario (
