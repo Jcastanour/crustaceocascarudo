@@ -6,7 +6,7 @@ const jwt = require("jsonwebtoken");
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
   // Buscar usuario y contraseña en la base de datos
-  const query = "SELECT * FROM usuarios WHERE email = ? AND password = ?";
+  const query = "SELECT * FROM usuario WHERE email = ? AND password = ?";
   try {
     const connection = req.app.get("dbConnection");
     const [results] = await connection.query(query, [email, password]);

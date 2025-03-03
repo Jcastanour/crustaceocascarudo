@@ -1,6 +1,14 @@
+
 -- Crear la base de datos
 CREATE DATABASE IF NOT EXISTS crustaceodb;
 USE crustaceodb;
+
+DROP TABLE Usuarios
+drop table Productos
+drop table Pedidos
+drop table usuario
+drop table product
+drop table pedido
 
 -- Tabla de Usuarios (Clientes, Chefs, Administradores)
 CREATE TABLE IF NOT EXISTS usuario (
@@ -28,9 +36,9 @@ CREATE TABLE IF NOT EXISTS product (
 
 -- Insertar valores iniciales en Productos
 INSERT INTO product (name, description, price, image) VALUES
-('Cangreburger', 'Pan, carne, queso, lechuga', 1.25, 'images/burger1.jpg'),
-('Cangreburger + gaseosa', 'Pan, carne, lechuga, queso, lechuga, gaseosa', 3.25, 'images/burger2.jpg'),
-('Combo Cangreburger + gaseosa + papas', 'Pan, carne, tomate, queso, lechuga, gaseosa, papas', 5.25, 'images/burger3.jpg');
+('Cangreburger', 'Pan, carne, queso, lechuga', 1.25, 'images/cangreburger.jpg'),
+('Cangreburger + gaseosa', 'Pan, carne, lechuga, queso, lechuga, gaseosa', 3.25, 'images/combo2.jpg'),
+('Combo Cangreburger + gaseosa + papas', 'Pan, carne, tomate, queso, lechuga, gaseosa, papas', 5.25, 'images/combo3.jpg');
 
 -- Tabla de Pedidos
 CREATE TABLE IF NOT EXISTS pedido (
