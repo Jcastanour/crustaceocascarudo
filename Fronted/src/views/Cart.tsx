@@ -7,7 +7,6 @@ export const Cart: React.FC = () => {
   const { cartItems, removeFromCart, clearCart } = useCart();
   const navigate = useNavigate();
 
-
   return (
     <div className="cart-container">
       <h1>Carrito de Compras</h1>
@@ -26,21 +25,24 @@ export const Cart: React.FC = () => {
               <div className="cart-item-lower">
                 <p className="cart-item-description">{item.description}</p>
                 <div className="cart-item-quantity">
-                  <QuantitySelector 
-                    productId={item.id} 
-                    quantity={item.quantity} 
+                  <QuantitySelector
+                    productId={item.id}
+                    quantity={item.quantity}
                     setQuantity={(newQuantity) => {
-                      if (newQuantity === 0) removeFromCart(item.id); // 📌 Si llega a 0, se elimina el producto
+                      if (newQuantity === 0) removeFromCart(item.id); //  Si llega a 0, se elimina el producto
                     }}
                   />
                 </div>
               </div>
             </div>
           ))}
-          <button className="pay-button" onClick={() => {
-            clearCart(); // Vacía el carrito después del pago
-            navigate("/paid");
-          }}>
+          <button
+            className="pay-button"
+            onClick={() => {
+              clearCart(); // Vacía el carrito después del pago
+              navigate("/paid");
+            }}
+          >
             Pagar
           </button>
         </div>

@@ -10,6 +10,10 @@ async function createConnection() {
     database: process.env.DB_NAME, // Ej: "crustaceodb"
   });
   console.log("Conexión a MySQL exitosa");
+  if (!connection) {
+    console.log("Error al conectar a la base de datos");
+    return;
+  }
   return connection;
 }
 
