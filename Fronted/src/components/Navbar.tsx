@@ -5,9 +5,13 @@ import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { UserMenu } from "./UserMenu";
 import "../styles/Navbar.css";
+import { useCart } from "../context/CartContext";
 
 export const Navbar: React.FC = () => {
   const { user } = useContext(AuthContext);
+  const { cartItems } = useCart(); // Obtenemos los items del carrito
+
+  const totalItems = cartItems.reduce((acc, item) => acc + item.quantity, 0);
 
   return (
     <nav className="navbar">
@@ -46,6 +50,9 @@ export const Navbar: React.FC = () => {
           {user?.rol === "cliente" && (
             <Link to="/cart" className="navbar-cart">
               <BsCart3 />
+              {totalItems > 0 && (
+                <span className="cart-badge">{totalItems}</span>
+              )}
             </Link>
           )}
 

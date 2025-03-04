@@ -57,7 +57,7 @@ router.post("/captcha", async (req, res) => {
   try {
     const payload = { captchaPassed: true };
     const token = jwt.sign(payload, process.env.JWT_SECRET, {
-      expiresIn: 30, // Ejemplo: "1m"
+      expiresIn: "1h", // Ejemplo: "1m"
     });
 
     res.json({ message: "Captcha validado", token });
@@ -84,18 +84,21 @@ router.get("/productos", async (req, res) => {
 router.post("/pedidos", async (req, res) => {
   const { id_cliente, productos } = req.body;
 
-  console.log("id_cliente", id_cliente);
-  console.log("productos", productos);
   try {
     const connection = req.app.get("dbConnection");
-    const { id_cliente, productos } = req.body;
+
+    const [headerResult] = await connection.query(
+      "INSERT INTO pedido (id_cliente, estado) VALUES (?, 'pendiente')",
+      [id_cliente]
+    );
+    const orderId = headerResult.insertId;
 
     for (let producto of productos) {
       const { id_producto, cantidad_producto } = producto;
 
       const [insertResults] = await connection.query(
-        "INSERT INTO pedido (id_producto, cantidad_producto, id_cliente, estado) VALUES (?, ?, ?, 'pendiente')",
-        [id_producto, cantidad_producto, id_cliente]
+        "INSERT INTO pedido_detalle (id_pedido, id_producto, cantidad_producto) VALUES (?, ?, ?)",
+        [orderId, id_producto, cantidad_producto]
       );
       res.status(201).json({ message: "Pedido registrado exitosamente" });
     }

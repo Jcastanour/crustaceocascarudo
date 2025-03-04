@@ -1,14 +1,16 @@
 -- Crear la base de datos
-CREATE DATABASE IF NOT EXISTS crustaceodb;
-USE crustaceodb;
-
-
+drop schema crustaceodb;
 drop table IF EXISTS productos;
 DROP TABLE IF EXISTS usuarios;
 drop table IF EXISTS pedidos;
 drop table IF EXISTS product;
 drop table IF EXISTS pedido;
 drop table IF EXISTS usuario;
+
+CREATE DATABASE IF NOT EXISTS crustaceodb;
+USE crustaceodb;
+
+
 
 -- Tabla de Usuarios (Cliegointes, Chefs, Administradores)
 CREATE TABLE IF NOT EXISTS usuario (
@@ -40,19 +42,27 @@ INSERT INTO product (name, description, price, image) VALUES
 ('Cangreburger + gaseosa', 'Pan, carne, lechuga, queso, lechuga, gaseosa', 3.25, 'images/combo2.jpg'),
 ('Combo Cangreburger + gaseosa + papas', 'Pan, carne, tomate, queso, lechuga, gaseosa, papas', 5.25, 'images/combo3.jpg');
 
--- Tabla de Pedidos
 CREATE TABLE IF NOT EXISTS pedido (
-    id INT NOT NULL AUTO_INCREMENT,
-    id_producto INT NOT NULL,
-    cantidad_producto INT NOT NULL,
-    id_cliente INT NOT NULL,
-    fecha_venta TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    estado ENUM('pendiente', 'entregado') NOT NULL DEFAULT 'pendiente',
-    PRIMARY KEY (id, id_producto),
-    FOREIGN KEY (id_producto) REFERENCES product(id) ON DELETE CASCADE,
-    FOREIGN KEY (id_cliente) REFERENCES usuario(id) ON DELETE CASCADE
+  id INT NOT NULL AUTO_INCREMENT,
+  id_cliente INT NOT NULL,
+  fecha_venta TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  estado ENUM('pendiente', 'entregado') NOT NULL DEFAULT 'pendiente',
+  PRIMARY KEY (id),
+  FOREIGN KEY (id_cliente) REFERENCES usuario(id) ON DELETE CASCADE
 );
 
--- Insertar un pedido de ejemplo en Pedidos (opcional)
-INSERT INTO pedido (id_producto, cantidad_producto, id_cliente, estado) VALUES
-(1, 2, 3, 'pendiente');
+INSERT INTO pedido (id_cliente, estado) VALUES (3, 'pendiente');
+
+
+-- Tabla de Detalles del Pedido
+CREATE TABLE IF NOT EXISTS pedido_detalle (
+  id_pedido INT NOT NULL,
+  id_producto INT NOT NULL,
+  cantidad_producto INT NOT NULL,
+  PRIMARY KEY (id),
+  FOREIGN KEY (id_pedido) REFERENCES pedido(id) ON DELETE CASCADE,
+  FOREIGN KEY (id_producto) REFERENCES product(id) ON DELETE CASCADE
+);
+
+INSERT INTO pedido_detalle (id_pedido, id_producto, cantidad_producto) VALUES (100, 1, 2);
+INSERT INTO pedido_detalle (id_pedido, id_producto, cantidad_producto) VALUES (100, 2, 3);
