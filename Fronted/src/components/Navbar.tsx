@@ -51,7 +51,9 @@ export const Navbar: React.FC = () => {
         <div className="right-component">
           {(!user || user?.rol === "cliente" || null) && (
             <Link to="/cart" className="navbar-cart">
-              <BsCart3 />
+              <div className="cart-image-link">
+                <BsCart3 />
+              </div>
               {totalItems > 0 && (
                 <span className="cart-badge">{totalItems}</span>
               )}

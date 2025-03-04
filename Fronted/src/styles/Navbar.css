@@ -65,17 +65,38 @@ a {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 5px;
+  gap: 10px;
+  column-gap: 15px;
 }
 
+
 .navbar-cart {
-  width: 50px;
-  color: black;
-  object-fit: contain;
-  display: flex;
-  align-content: center;
-  justify-content: center;
+  position: relative; /* Para que .cart-badge se posicione con respecto a este */
+  display: inline-block;
 }
+
+.cart-image-link {
+  font-size: 24px; /* Ajusta según el tamaño del icono */
+  align-self: center;
+  justify-self: center;
+}
+
+.cart-badge {
+  position: absolute;
+  top: -5px; /* Ajusta la posición vertical */
+  right: -10px; /* Ajusta la posición horizontal */
+  background-color: red;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+}
+
 
 .navbar-login-button {
   font-size: 15px;
@@ -132,8 +153,8 @@ a {
   .navbar-cart {
     width: 30px;
     height: 30px;
-    color: black;
-    object-fit: contain;
+    top: 4px;
+    align-self: center;
   }
   
   .navbar-cart :hover {
