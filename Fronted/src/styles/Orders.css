@@ -1,0 +1,27 @@
+.orders-container {
+  padding: 1rem;
+}
+
+.order-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  padding: 1rem;
+}
+
+.order-card h2 {
+  margin-top: 0;
+}
+
+.order-card p {
+  margin: 0.5rem 0;
+}
+
+.order-card ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.order-card li {
+  margin: 0.3rem 0;
+}
