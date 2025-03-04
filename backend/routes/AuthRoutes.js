@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
+const verifyToken = require("../middlewares/authMiddleware");
 
 // Login
 router.post("/login", async (req, res) => {
@@ -118,5 +119,72 @@ router.post("/pedidos", async (req, res) => {
   }
 });
 
-router.post("orders");
+router.get("/orders", verifyToken, async (req, res) => {
+  try {
+    const id_cliente = req.user.id;
+    const connection = req.app.get("dbConnection");
+
+    // Consulta SQL que une pedido y pedido_detalle,
+    // join y filtrado por id_cliente
+    const [rows] = await connection.query(
+      `
+      SELECT 
+        p.id AS pedido_id,
+        p.fecha_venta,
+        p.estado,
+        d.id_producto,
+        d.cantidad_producto,
+        pr.name AS nombre_producto
+      FROM pedido p
+      JOIN pedido_detalle d ON p.id = d.id_pedido
+      JOIN product pr ON d.id_producto = pr.id
+      WHERE p.id_cliente = ?
+      ORDER BY p.fecha_venta DESC
+    `,
+      [id_cliente]
+    );
+
+    console.log(rows);
+
+    // rows contendrá varias filas, una por cada producto de cada pedido.
+    // Necesitamos agruparlas por pedido para enviarlas en un formato organizado.
+    const pedidosMap = {};
+
+    for (const row of rows) {
+      const {
+        pedido_id,
+        fecha_venta,
+        estado,
+        id_producto,
+        cantidad_producto,
+        nombre_producto,
+      } = row;
+
+      if (!pedidosMap[pedido_id]) {
+        pedidosMap[pedido_id] = {
+          id: pedido_id,
+          fecha_venta,
+          estado,
+          detalles: [],
+        };
+      }
+      pedidosMap[pedido_id].detalles.push({
+        id_producto,
+        nombre_producto,
+        cantidad_producto,
+      });
+    }
+
+    // Convertimos el objeto pedidosMap en un array
+    const pedidos = Object.values(pedidosMap);
+
+    console.log(pedidos);
+
+    res.json(pedidos);
+  } catch (error) {
+    console.error("Error al obtener pedidos:", error);
+    res.status(500).json({ message: "Error al obtener pedidos" });
+  }
+});
+
 module.exports = router;

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import PlanktonBlock from "../assets/PlanktonBlock.png";
 import doncrangejo from "../assets/doncangrejo.png";

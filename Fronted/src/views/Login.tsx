@@ -17,6 +17,9 @@ export const Login: React.FC = () => {
     e.preventDefault();
     if (esPlankton(correo) || esPlankton(password)) {
       alert("Plankton, no puedes robar la receta secreta.");
+      localStorage.removeItem("captchaToken");
+      navigate("/PlanktonCaptcha");
+
       return;
     }
 
