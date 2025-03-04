@@ -1,0 +1,14 @@
+/* src/components/AdminUsers.css */
+.admin-users {
+  padding: 1rem;
+}
+
+.user-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
