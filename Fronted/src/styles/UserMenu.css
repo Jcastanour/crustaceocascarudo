@@ -6,8 +6,9 @@
 .user-button {
   background-color: transparent;
   display: flex;
-  padding: 8px 15px;
+  padding: 8px 20px;
   align-items: center;
+  column-gap: 5px;
   border: 1px solid #000000;
   border-radius: 5px;
   cursor: pointer;
