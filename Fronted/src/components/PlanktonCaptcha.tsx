@@ -13,7 +13,7 @@ export const PlanktonCaptcha = () => {
   const handleResponse = async (isPlankton: boolean) => {
     if (!isPlankton) {
       try {
-        const response = await fetch("http://localhost:3000/api/captcha", {
+        const response = await fetch("http://localhost:3000/api/auth/captcha", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ passed: true }), // Si deseas enviar datos

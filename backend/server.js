@@ -4,6 +4,9 @@ const cors = require("cors");
 require("dotenv").config();
 const createConnection = require("./db/db");
 const authRoutes = require("./routes/AuthRoutes");
+const productRoutes = require("./routes/productRoutes");
+const orderRoutes = require("./routes/orderRoutes");
+const userRoutes = require("./routes/userRoutes");
 
 (async () => {
   const app = express();
@@ -13,18 +16,20 @@ const authRoutes = require("./routes/AuthRoutes");
   app.use(cors());
   app.use(express.json()); // Permite interpretar JSON en el body
 
-  // Establece la conexión a la BD y la guarda en app.locals o usando app.set()
+  // Conexion BD
   const connection = await createConnection();
   app.set("dbConnection", connection);
-  // Ahora, en cualquier ruta, se podrá acceder a esta conexión usando req.app.get('dbConnection')
 
-  // Montar las rutas de autenticación bajo el prefijo /api
-  app.use("/api", authRoutes);
+  // Rutas con prefijos
+  app.use("/api/auth", authRoutes);
+  app.use("/api/productos", productRoutes);
+  app.use("/api", orderRoutes);
+  app.use("/api", userRoutes);
 
   // Ruta de prueba
   app.get("/", (req, res) => {
     res.send(
-      "Backend con Express y MySQL (con conexión persistente) funcionando!"
+      "Backend con Express y MySQL (con conexión funcionando melo) funcionando!"
     );
   });
 

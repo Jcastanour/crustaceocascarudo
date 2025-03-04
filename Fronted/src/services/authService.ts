@@ -2,7 +2,7 @@ export const authService = {
   // Funcion para iniciar sesion
   login: async (email: string, password: string): Promise<string | null> => {
     try {
-      const response = await fetch("http://localhost:3000/api/login", {
+      const response = await fetch("http://localhost:3000/api/auth/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -31,7 +31,7 @@ export const authService = {
     rol?: string
   ): Promise<boolean> => {
     try {
-      const response = await fetch("http://localhost:3000/api/register", {
+      const response = await fetch("http://localhost:3000/api/auth/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
