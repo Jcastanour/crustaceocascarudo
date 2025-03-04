@@ -13,18 +13,30 @@
     color: #555;
   }
   
-  .home-button {
-    display: inline-block;
+  .paid-buttons {
+    display: grid;
+    grid-template-rows: repeat(2, 1fr);
+    row-gap: 25px; /* Espacio entre botones */
+    justify-content: center; /* Centra los botones en el contenedor */
+  }
+  
+  .home-button,
+  .orders-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background: blue;
     color: white;
-    padding: 12px 20px;
-    margin-top: 20px;
+    padding: 10px 20px;
     text-decoration: none;
     border-radius: 5px;
     transition: background 0.3s;
+    width: 200px; /* Tamaño fijo para que ambos sean iguales */
+    height: 35px; /* Misma altura para los dos */
   }
   
   .home-button:hover {
     background: darkblue;
   }
+  
   

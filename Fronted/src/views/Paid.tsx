@@ -6,12 +6,14 @@ export const Paid: React.FC = () => {
     <div className="paid-container">
       <h1>¡Pago realizado con éxito! ✅</h1>
       <p>Gracias por tu compra. Tu pedido está en preparación.</p>
-      <Link to="/" className="home-button">
-        Volver al inicio
-      </Link>
-      <Link to="/orders" className="orders-button">
-        Ver mis pedidos
-      </Link>
+      <div className="paid-buttons">
+        <Link to="/" className="home-button">
+          Volver al inicio
+        </Link>
+        <Link to="/orders" className="orders-button">
+          Ver mis pedidos
+        </Link>
+      </div>
     </div>
   );
 };
