@@ -7,7 +7,7 @@ import { productService } from "../services/productService";
 import { Product } from "../types/Product";
 
 interface CaptchaPayload {
-  exp: number; // Expiración en segundos desde Epoch
+  exp: number; // tiempo Expiración
   captchaPassed: boolean;
 }
 

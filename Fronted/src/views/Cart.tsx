@@ -15,6 +15,7 @@ export const Cart: React.FC = () => {
   const handlePago = async () => {
     if (!user) {
       alert("Debes iniciar sesión para pagar.");
+      navigate("/login");
       return;
     }
 

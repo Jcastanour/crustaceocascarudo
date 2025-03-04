@@ -1,8 +1,6 @@
-import { Usuario } from "../types/Usuario";
-
 export const authService = {
   // Funcion para iniciar sesion
-  login: async (email: string, password: string): Promise<Usuario | null> => {
+  login: async (email: string, password: string): Promise<string | null> => {
     try {
       const response = await fetch("http://localhost:3000/api/login", {
         method: "POST",
@@ -13,17 +11,14 @@ export const authService = {
       });
 
       // error
-      if (!response.ok) {
-        return null;
-      }
-
+      if (!response.ok) return null;
       const data = await response.json();
-      // console.log("Respuesta del backend:", data);
+      console.log("Respuesta del backend:", data);
+      return data.token;
 
       //devuelve { usuario: { ... } }
-      return data.usuario;
     } catch (error) {
-      // console.error("Error en authService.login:", error);
+      console.error("Error en authService.login:", error);
       return null;
     }
   },
@@ -52,6 +47,6 @@ export const authService = {
   },
 
   logout: () => {
-    localStorage.removeItem("user");
+    localStorage.removeItem("userToken");
   },
 };

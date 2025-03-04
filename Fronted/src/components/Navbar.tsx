@@ -13,6 +13,8 @@ export const Navbar: React.FC = () => {
 
   const totalItems = cartItems.reduce((acc, item) => acc + item.quantity, 0);
 
+  console.log(user?.rol);
+
   return (
     <nav className="navbar">
       <div className="navbar-components">
@@ -47,7 +49,7 @@ export const Navbar: React.FC = () => {
         </div>
 
         <div className="right-component">
-          {user?.rol === "cliente" && (
+          {(!user || user?.rol === "cliente" || null) && (
             <Link to="/cart" className="navbar-cart">
               <BsCart3 />
               {totalItems > 0 && (

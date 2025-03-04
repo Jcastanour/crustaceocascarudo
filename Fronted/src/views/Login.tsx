@@ -12,7 +12,6 @@ export const Login: React.FC = () => {
   const [password, setPassword] = useState<string>("");
   const [notPlankton, setNotPlankton] = useState<boolean>(false);
   const [termsAccepted, setTermsAccepted] = useState<boolean>(false);
-  const [errorMsg, setErrorMsg] = useState<string>("");
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -21,12 +20,9 @@ export const Login: React.FC = () => {
       return;
     }
 
-    if (!notPlankton) {
-      alert("Confirmar que no eres Plankton");
-      return;
-    }
-
     const success = await login(correo, password);
+
+    console.log("Login exitoso:", success);
     if (success) {
       // Si hay redirección "from" en el state, úsalo; si no, redirige al home
       const from = (location.state as { from?: string })?.from || "/";

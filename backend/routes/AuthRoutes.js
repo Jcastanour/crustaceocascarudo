@@ -14,9 +14,19 @@ router.post("/login", async (req, res) => {
       return res.status(401).json({ message: "Credenciales incorrectas" });
     }
     const usuario = results[0];
+
+    const payload = {
+      id: usuario.id,
+      nombre: usuario.nombre,
+      rol: usuario.rol,
+    };
+
+    const token = jwt.sign(payload, process.env.JWT_SECRET, {
+      expiresIn: 61, // Puedes ajustar el tiempo de expiración según tus necesidades.
+    });
     // console.log(results);
     // console.log(usuario);
-    res.json({ message: "Login exitoso", usuario });
+    res.json({ message: "Login exitoso", token });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Error al intentar loguear al usuario" });
