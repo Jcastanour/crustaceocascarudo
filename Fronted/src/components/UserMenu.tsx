@@ -40,9 +40,23 @@ export const UserMenu: React.FC = () => {
       </button>
       {menuOpen && (
         <div className="dropdown-menu">
-          <Link to="/Orders" onClick={() => setMenuOpen(false)}>
-            <FaClipboardList className="menu-icon" /> Ver pedidos
-          </Link>
+          {(!user || user.rol === "cliente") && (
+            <Link to="/Orders" onClick={() => setMenuOpen(false)}>
+              <FaClipboardList className="menu-icon" /> Ver pedidos
+            </Link>
+          )}
+
+          {(!user || user.rol === "admin") && (
+            <Link to="/AdminPanel" onClick={() => setMenuOpen(false)}>
+              <FaClipboardList className="menu-icon" /> Admin Panel
+            </Link>
+          )}
+
+          {(!user || user.rol === "chef") && (
+            <Link to="/ChefPanel" onClick={() => setMenuOpen(false)}>
+              <FaClipboardList className="menu-icon" /> Panel chef
+            </Link>
+          )}
           <button
             onClick={() => {
               logout();

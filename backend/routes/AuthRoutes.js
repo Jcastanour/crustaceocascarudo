@@ -22,7 +22,7 @@ router.post("/login", async (req, res) => {
     };
 
     const token = jwt.sign(payload, process.env.JWT_SECRET, {
-      expiresIn: 61, // Puedes ajustar el tiempo de expiración según tus necesidades.
+      expiresIn: "1h", // Puedes ajustar el tiempo de expiración según tus necesidades.
     });
     // console.log(results);
     // console.log(usuario);
@@ -110,11 +110,13 @@ router.post("/pedidos", async (req, res) => {
         "INSERT INTO pedido_detalle (id_pedido, id_producto, cantidad_producto) VALUES (?, ?, ?)",
         [orderId, id_producto, cantidad_producto]
       );
-      res.status(201).json({ message: "Pedido registrado exitosamente" });
     }
+    res.status(201).json({ message: "Pedido registrado exitosamente" });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Error al intentar registrar el pedido" });
   }
 });
+
+router.post("orders");
 module.exports = router;

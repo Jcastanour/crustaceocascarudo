@@ -28,8 +28,22 @@ export const App: React.FC = () => {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/PlanktonCaptcha" element={<PlanktonCaptcha />} />
-              <Route path="/Menu" element={<Menu />} />
-              <Route path="/Cart" element={<Cart />} />
+              <Route
+                path="/Menu"
+                element={
+                  <ProtectedRoute allowedRoles={["cliente"]}>
+                    <Menu />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/Cart"
+                element={
+                  <ProtectedRoute allowedRoles={["cliente"]}>
+                    <Cart />
+                  </ProtectedRoute>
+                }
+              />
               <Route path="/Login" element={<Login />} />
               <Route path="/Register" element={<Register />} />
               <Route path="/Tyc" element={<Tyc />} />
@@ -65,7 +79,7 @@ export const App: React.FC = () => {
                   </ProtectedRoute>
                 }
               />
-              {/*   <Route path="*" element={<NotFound />} /> */}
+              <Route path="*" element={<NotFound />} />
             </Routes>
           </div>
           <Footer />
