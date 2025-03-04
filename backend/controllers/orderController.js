@@ -137,6 +137,60 @@ exports.getAllOrders = async (req, res) => {
   }
 };
 
+exports.getPendingOrders = async (req, res) => {
+  try {
+    const connection = req.app.get("dbConnection");
+    // Consulta que solo traiga pedidos con estado "pendiente"
+    const [rows] = await connection.query(
+      `
+      SELECT 
+        p.id AS pedido_id,
+        p.fecha_venta,
+        p.estado,
+        d.id_producto,
+        d.cantidad_producto,
+        pr.name AS nombre_producto
+      FROM pedido p
+      JOIN pedido_detalle d ON p.id = d.id_pedido
+      JOIN product pr ON d.id_producto = pr.id
+      WHERE p.estado = 'pendiente'
+      ORDER BY p.fecha_venta DESC
+      `
+    );
+
+    // Agrupar filas en pedidos
+    const pedidosMap = {};
+    for (const row of rows) {
+      const {
+        pedido_id,
+        fecha_venta,
+        estado,
+        id_producto,
+        cantidad_producto,
+        nombre_producto,
+      } = row;
+      if (!pedidosMap[pedido_id]) {
+        pedidosMap[pedido_id] = {
+          id: pedido_id,
+          fecha_venta,
+          estado,
+          detalles: [],
+        };
+      }
+      pedidosMap[pedido_id].detalles.push({
+        id_producto,
+        nombre_producto,
+        cantidad_producto,
+      });
+    }
+    const pedidos = Object.values(pedidosMap);
+    res.json(pedidos);
+  } catch (error) {
+    console.error("Error al obtener pedidos pendientes:", error);
+    res.status(500).json({ message: "Error al obtener pedidos pendientes" });
+  }
+};
+
 exports.updateOrderStatus = async (req, res) => {
   // Para el Chef, marcar un pedido como entregado
   const { orderId } = req.params;

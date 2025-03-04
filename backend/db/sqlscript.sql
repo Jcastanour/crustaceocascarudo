@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS pedido_detalle (
   id_pedido INT NOT NULL,
   id_producto INT NOT NULL,
   cantidad_producto INT NOT NULL,
-  PRIMARY KEY (id),
+  PRIMARY KEY (id_pedido,id_producto),
   FOREIGN KEY (id_pedido) REFERENCES pedido(id) ON DELETE CASCADE,
   FOREIGN KEY (id_producto) REFERENCES product(id) ON DELETE CASCADE
 );

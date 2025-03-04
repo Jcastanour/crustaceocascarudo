@@ -1,0 +1,51 @@
+.chef-panel {
+  padding: 1rem;
+}
+
+.chef-panel h1 {
+  margin-bottom: 1rem;
+}
+
+/* Estilos para la tabla */
+.chef-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.chef-table thead th {
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  padding: 0.5rem;
+}
+
+.chef-table td {
+  border: 1px solid #ccc;
+  padding: 0.5rem;
+}
+
+/* Botón de completar pedido */
+.complete-button {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.complete-button:hover {
+  background-color: #218838;
+}
+
+.order-details-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.order-details-list li {
+  margin-bottom: 0.3rem;
+  padding-bottom: 0.2rem;
+}

@@ -11,6 +11,13 @@ router.post("/pedidos", orderController.createOrder);
 // Para que el cliente vea su historial de pedidos
 router.get("/orders", verifyToken, orderController.getOrdersForUser);
 
+router.get(
+  "/chefpanel/orders",
+  verifyToken,
+  allowRoles("chef"),
+  orderController.getPendingOrders
+);
+
 // Para el Admin: ver todos los pedidos
 router.get(
   "/adminpanel/orders",
