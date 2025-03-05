@@ -1,11 +1,10 @@
-import React, { useEffect } from "react";
 import "leaflet/dist/leaflet.css";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 
 // Cordenadas de Bikini Atoll, donde se supone esta fondo de Bikini
 const position: [number, number] = [6.274757055592747, -75.59263764928876];
 
-const Map: React.FC = () => {
+const Map = () => {
   return (
     <MapContainer
       center={position}
@@ -18,7 +17,6 @@ const Map: React.FC = () => {
       <Marker position={position}>
         <Popup>📍 Aquí está tu ubicación</Popup>
       </Marker>
-      <ResizeMap />
     </MapContainer>
   );
 };

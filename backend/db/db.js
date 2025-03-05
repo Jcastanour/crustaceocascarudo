@@ -8,6 +8,7 @@ async function createConnection() {
     user: process.env.DB_USER, // Ej: "root"
     password: process.env.DB_PASSWORD, // Tu contraseña
     database: process.env.DB_NAME, // Ej: "crustaceodb"
+    port: process.env.DB_PORT || 3306,
   });
   console.log("Conexión a MySQL exitosa");
   if (!connection) {
