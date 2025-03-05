@@ -50,7 +50,7 @@ Abre tu editor de código favorito (recomendamos **Visual Studio Code**):
      node server.js
      ```
    - Si todo está correcto, deberías ver el siguiente mensaje en la consola:
-     ```
+     ```bash
      Conexión a MySQL exitosa
      Servidor corriendo en el puerto 3000
      ```
@@ -66,7 +66,7 @@ Para configurar la base de datos, necesitas ejecutar un script que creará las t
 1. **Navegar a la carpeta del script**:
    - Dirígete a la carpeta **`backend/db`**.
 2. **Abrir el archivo SQL**:
-   - Abre el archivo **`sqlscript.sql`** en tu cliente MySQL.
+   - Abre el archivo **`crustaceodb.sql`** en tu cliente MySQL.
 3. **Ejecutar el script**:
    - Ejecuta el script en tu cliente MySQL para crear las tablas y configurar la base de datos **crustaceodb**.
 
@@ -96,7 +96,7 @@ Ahora es momento de configurar el frontend para interactuar con el backend.
      ```
    - Si todo está correcto, verás un mensaje en la consola con un enlace como este:
 
-     ```
+     ```bash
      Vite running at: http://localhost:5173/
      ```
 
@@ -110,8 +110,25 @@ Ahora es momento de configurar el frontend para interactuar con el backend.
 
 ### Resumen de Archivos
 
-- **`sqlscript.sql`**: Este archivo contiene el script SQL para crear las tablas en la base de datos.
+- **`crustaceodb.sql`**: Este archivo contiene el script SQL para crear las tablas en la base de datos.  
+  _Se encuentra en la carpeta `backend/db/` y debe ser ejecutado en tu cliente MySQL para configurar la base de datos._
+
 - **`backend/server.js`**: Archivo que inicia el servidor y maneja las conexiones de la API.
+
 - **`frontend/`**: Contiene el código fuente de la interfaz de usuario (UI) del sistema de pedidos.
 
 ---
+
+### Estructura del Proyecto
+
+```plaintext
+crustaceocascarudo/
+├── backend/
+│   ├── db/
+│   │   └── crustaceodb.sql
+│   ├── server.js
+│   └── (otros archivos del backend)
+├── frontend/
+│   ├── (archivos del frontend)
+└── README.md
+```
