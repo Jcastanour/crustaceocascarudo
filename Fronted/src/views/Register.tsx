@@ -11,17 +11,29 @@ export const Register: React.FC = () => {
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [error, setError] = useState<string | null>(null);
 
-  const handleRegister = (e: React.FormEvent) => {
+  const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (esPlankton(name) || esPlankton(email) || esPlankton(password)) {
-      alert("🚫 Plankton, no puedes robar la receta secreta.");
+      alert("Plankton, no puedes robar la receta secreta.");
+      localStorage.removeItem("captchaToken");
+      navigate("/PlanktonCaptcha");
+
       return;
     }
 
-    register(name, email, password);
-    navigate("/login");
+    try {
+      const success = await register(name, email, password);
+      if (success) {
+        navigate("/login");
+      } else {
+        setError("🚫 Correo ya existe.");
+      }
+    } catch (error) {
+      setError("🚫 Error al registrarse. Intenta nuevamente.");
+    }
   };
 
   return (
@@ -71,6 +83,8 @@ export const Register: React.FC = () => {
           Registrarse
         </button>
       </form>
+
+      {error && <p className="error-message">{error}</p>}
       <p className="register-link">
         ¿Ya tienes cuenta?<Link to="/login">¡Inicia sesion aqui!</Link>
       </p>

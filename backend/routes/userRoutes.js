@@ -17,4 +17,18 @@ router.put(
   allowRoles("admin"),
   userController.updateUser
 );
+
+router.delete(
+  "/usuarios/:id",
+  verifyToken,
+  allowRoles("admin"),
+  userController.deleteUser
+);
+
+router.post(
+  "/usuarios",
+  verifyToken,
+  allowRoles("admin"),
+  userController.createUser
+);
 module.exports = router;
