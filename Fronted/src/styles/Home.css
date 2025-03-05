@@ -9,6 +9,19 @@
   height: 450px;
 }
 
+.location-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5rem;
+  gap: 1rem;
+}
+
+.leaflet-control-attribution {
+  display: none !important;
+}
+
 @media only screen and (max-width: 900px) {
   .home-ubicacion {
     height: 250px;
