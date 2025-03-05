@@ -18,6 +18,10 @@
   gap: 1rem;
 }
 
+.home-ubicacion {
+  margin-top: 20px; /* Espacio entre el mapa y la imagen */
+}
+
 .leaflet-control-attribution {
   display: none !important;
 }
