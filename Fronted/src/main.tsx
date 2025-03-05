@@ -5,6 +5,11 @@ import "./index.css";
 import { App } from "./App.tsx";
 import { BrowserRouter } from "react-router-dom";
 
+/*Pa quitar comentarios. Poner development */
+if (import.meta.env.MODE === "production") {
+  console.log = () => {};
+}
+
 createRoot(document.getElementById("root")!).render(
   <BrowserRouter>
     <StrictMode>
@@ -12,3 +17,4 @@ createRoot(document.getElementById("root")!).render(
     </StrictMode>
   </BrowserRouter>
 );
+console.log("Modo actual:", import.meta.env.MODE);

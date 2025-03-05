@@ -32,7 +32,9 @@
     border-radius: 5px;
     transition: background 0.3s;
     width: 200px; /* Tamaño fijo para que ambos sean iguales */
-    height: 35px; /* Misma altura para los dos */
+    height: 50px; /* Misma altura para los dos */
+    text-align: center;
+    white-space: nowrap;
   }
   
   .home-button:hover {
