@@ -6,3 +6,11 @@
 .admin-panel h1 {
   margin-bottom: 1rem;
 }
+
+@media (max-width: 576px) {
+  .admin-panel {
+    overflow-x: auto;
+    min-width: 100%;
+    box-sizing: border-box;
+  }
+}

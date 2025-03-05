@@ -1,4 +1,3 @@
-// src/components/AdminProducts.tsx
 import React, { useEffect, useState } from "react";
 import { Button, Modal, Form, Table } from "react-bootstrap";
 import "./styles/AdminProducts.css";
