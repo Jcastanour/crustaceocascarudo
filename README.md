@@ -1,76 +1,117 @@
-🍔🦀 Proyecto Crustáceo Cascarudo 🦀🍔
+# 🍔🦀 Proyecto Crustáceo Cascarudo 🦀🍔
 
-🚀 Instalación y configuración del entorno
+Bienvenido al proyecto **Crustáceo Cascarudo**. Este repositorio contiene el backend y frontend de un sistema para administrar pedidos en un restaurante.
 
-Sigue estos pasos para configurar y ejecutar el proyecto correctamente:
+### 🚀 Instalación y configuración del entorno
 
-1️⃣ Configurar la base de datos en DBngin
+Sigue los pasos a continuación para configurar y ejecutar el proyecto correctamente:
 
-Abre DBngin y crea un nuevo database engine con el nombre crustaceodb.
+---
 
-Asegúrate de que la base de datos se configure en el puerto 3306.
+## 1️⃣ Configurar la base de datos en DBngin
 
-Inicia el servicio para que MySQL esté en ejecución.
+Para comenzar con el proyecto, primero necesitas configurar la base de datos.
 
-2️⃣ Abrir el proyecto en tu entorno de desarrollo
+### Pasos:
 
-Abre Visual Studio Code (o tu editor de preferencia).
+1. **Abrir DBngin**: Abre la aplicación **DBngin**.
+2. **Crear un nuevo engine**:
+   - Crea un nuevo **Database Engine** con el nombre **`crustaceodb`**.
+   - Configura el **puerto 3306** para la base de datos MySQL.
+3. **Iniciar el servicio**: Asegúrate de que el servicio de MySQL esté en ejecución.
 
-Carga el proyecto dentro del editor.
+---
 
-3️⃣ Configurar y ejecutar el Backend
+## 2️⃣ Abrir el proyecto en tu entorno de desarrollo
 
-Abre una nueva terminal (cmd)
+Abre tu editor de código favorito (recomendamos **Visual Studio Code**):
 
----> Navega a la carpeta del backend:
+1. **Cargar el proyecto**: Abre el proyecto **Crustáceo Cascarudo** dentro del editor.
 
-->cd backend
+---
 
---->Instala las dependencias necesarias:
+## 3️⃣ Configurar y ejecutar el Backend
 
-->npm install
+### Pasos:
 
-Verifica que la instalación se complete sin errores.
+1. **Abrir terminal**:
+   - Abre una nueva terminal de comandos (cmd).
+2. **Navegar a la carpeta del Backend**:
+   - `cd backend`
+3. **Instalar dependencias**:
+   - Ejecuta el siguiente comando para instalar las dependencias necesarias:
+     ```bash
+     npm install
+     ```
+   - Asegúrate de que la instalación se complete sin errores.
+4. **Iniciar el servidor**:
+   - Ejecuta el servidor con:
+     ```bash
+     node server.js
+     ```
+   - Si todo está correcto, deberías ver el siguiente mensaje en la consola:
+     ```
+     Conexión a MySQL exitosa
+     Servidor corriendo en el puerto 3000
+     ```
 
---->Inicia el servidor ejecutando:
+---
 
-->node server.js
+## 4️⃣ Ejecutar el script de la base de datos
 
-Si todo está correcto, deberías ver el siguiente mensaje en la consola:
+Para configurar la base de datos, necesitas ejecutar un script que creará las tablas y configurará todo lo necesario.
 
-Conexión a MySQL exitosa
-Servidor corriendo en el puerto 3000
+### Pasos:
 
-4️⃣ Ejecutar el script de la base de datos
+1. **Navegar a la carpeta del script**:
+   - Dirígete a la carpeta **`backend/db`**.
+2. **Abrir el archivo SQL**:
+   - Abre el archivo **`sqlscript.sql`** en tu cliente MySQL.
+3. **Ejecutar el script**:
+   - Ejecuta el script en tu cliente MySQL para crear las tablas y configurar la base de datos **crustaceodb**.
 
-Navega a la carpeta backend/db.
+---
 
-Abre el archivo sqlscript.sql.
+## 5️⃣ Configurar y ejecutar el Frontend
 
-Ejecuta el script en tu cliente MySQL para crear las tablas y configurar la base de datos.
+Ahora es momento de configurar el frontend para interactuar con el backend.
 
-5️⃣ Configurar y ejecutar el Frontend
+### Pasos:
 
-Abre una segunda terminal (cmd)
+1. **Abrir una segunda terminal**:
+   - Abre otra terminal de comandos (cmd).
+2. **Navegar a la carpeta del Frontend**:
+   - `cd Frontend`
+3. **Instalar dependencias**:
+   - Ejecuta el siguiente comando para instalar las dependencias necesarias:
+     ```bash
+     npm install
+     ```
+   - Asegúrate de que la instalación se complete sin errores.
+4. **Iniciar el Frontend**:
 
---->Navega a la carpeta del frontend:
+   - Inicia el servidor del frontend con:
+     ```bash
+     npm run dev
+     ```
+   - Si todo está correcto, verás un mensaje en la consola con un enlace como este:
 
--> cd Fronted
+     ```
+     Vite running at: http://localhost:5173/
+     ```
 
---->Instala las dependencias necesarias:
+   - Abre el enlace en tu navegador para acceder a la página del **Crustáceo Cascarudo**.
 
-->npm install
+---
 
-Verifica que la instalación se complete sin errores.
+## 🍔🦀 ¡Esperamos que disfrutes de la página del mejor restaurante de Fondo de Bikini! 🦀🍔
 
---->Inicia el frontend con:
+---
 
-->npm run dev
+### Resumen de Archivos
 
---->Si todo está correcto, verás un mensaje en la consola con un enlace como el siguiente:
+- **`sqlscript.sql`**: Este archivo contiene el script SQL para crear las tablas en la base de datos.
+- **`backend/server.js`**: Archivo que inicia el servidor y maneja las conexiones de la API.
+- **`frontend/`**: Contiene el código fuente de la interfaz de usuario (UI) del sistema de pedidos.
 
-Vite running at: http://localhost:5173/
-
-Abre el enlace en tu navegador para acceder a la página del Crustáceo Cascarudo.
-
-🍔🦀 ¡Esperamos que disfrutes de la página del mejor restaurante de Fondo de Bikini! 🦀🍔
+---
