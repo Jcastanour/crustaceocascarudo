@@ -6,6 +6,11 @@ Bienvenido al proyecto **Crustáceo Cascarudo**. Este repositorio contiene el ba
 
 Sigue los pasos a continuación para configurar y ejecutar el proyecto correctamente:
 
+## Cuentas base:
+* correo: admin@gmail.com, contraseña: 1234
+* correo: chef@gmail.com, contraseña: 1234
+* Puede crear una cuenta de cliente al registrarse
+
 ---
 
 ## 1️⃣ Configurar la base de datos en DBngin
