@@ -11,4 +11,10 @@ router.get(
   userController.getAllUsers
 );
 
+router.put(
+  "/usuarios/:id",
+  verifyToken,
+  allowRoles("admin"),
+  userController.updateUser
+);
 module.exports = router;

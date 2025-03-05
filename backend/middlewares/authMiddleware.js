@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 const verifyToken = (req, res, next) => {
   // Leer el encabezado Authorization
   const authHeader = req.headers.authorization;
-  console.log(authHeader);
+  // console.log(authHeader);
 
   if (!authHeader) {
     return res.status(401).json({ message: "No se envió token" });
