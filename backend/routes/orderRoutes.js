@@ -34,4 +34,11 @@ router.put(
   orderController.updateOrderStatus
 );
 
+router.put(
+  "/adminpanel/orders/:orderId",
+  verifyToken,
+  allowRoles("admin"),
+  orderController.updateOrderStatus
+);
+
 module.exports = router;

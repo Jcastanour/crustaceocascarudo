@@ -88,17 +88,18 @@ exports.getAllOrders = async (req, res) => {
     const [rows] = await connection.query(
       `
       SELECT 
-        p.id AS pedido_id,
-        p.fecha_venta,
-        p.estado,
-        d.id_producto,
-        d.cantidad_producto,
-        pr.name AS nombre_producto,
-        p.id_cliente
-      FROM pedido p
-      JOIN pedido_detalle d ON p.id = d.id_pedido
-      JOIN product pr ON d.id_producto = pr.id
-      ORDER BY p.fecha_venta DESC
+        pedido.id AS pedido_id,
+        pedido.fecha_venta,
+        pedido.estado,
+        pedido_detalle.id_producto,
+        pedido_detalle.cantidad_producto,
+        product.name AS nombre_producto,
+        product.price AS precio,  
+        pedido.id_cliente
+      FROM pedido 
+      JOIN pedido_detalle ON pedido.id = pedido_detalle.id_pedido
+      JOIN product ON pedido_detalle.id_producto = product.id
+      ORDER BY pedido.fecha_venta DESC;
       `
     );
 
@@ -112,6 +113,7 @@ exports.getAllOrders = async (req, res) => {
         id_producto,
         cantidad_producto,
         nombre_producto,
+        precio,
         id_cliente,
       } = row;
       if (!pedidosMap[pedido_id]) {
@@ -127,6 +129,7 @@ exports.getAllOrders = async (req, res) => {
         id_producto,
         nombre_producto,
         cantidad_producto,
+        precio,
       });
     }
     const pedidos = Object.values(pedidosMap);
@@ -194,12 +197,16 @@ exports.getPendingOrders = async (req, res) => {
 exports.updateOrderStatus = async (req, res) => {
   // Para el Chef, marcar un pedido como entregado
   const { orderId } = req.params;
+  const { estado } = req.body;
+
+  console.log(orderId);
   try {
     const connection = req.app.get("dbConnection");
     const [result] = await connection.query(
-      "UPDATE pedido SET estado = 'entregado' WHERE id = ?",
-      [orderId]
+      "UPDATE pedido SET estado = ? WHERE id = ?",
+      [estado, orderId]
     );
+    console.log(result);
     res.json({ message: "Pedido actualizado" });
   } catch (error) {
     console.error("Error al actualizar pedido:", error);

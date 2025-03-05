@@ -12,6 +12,7 @@ interface OrderDetail {
 
 interface Order {
   id: number;
+  id_cliente: number;
   fecha_venta: string;
   estado: string;
   detalles: OrderDetail[];
@@ -35,12 +36,42 @@ export const AdminOrders: React.FC = () => {
         throw new Error("Error al obtener pedidos");
       }
       const data = await response.json();
+      console.log(data);
       setOrders(data);
     } catch (err) {
       console.error(err);
       setError("Error al obtener pedidos");
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleChangeStatus = async (orderId: number, currentStatus: string) => {
+    console.log(orderId, currentStatus);
+    const newStatus = currentStatus === "pendiente" ? "entregado" : "pendiente";
+    console.log(newStatus);
+
+    try {
+      const token = localStorage.getItem("userToken");
+      const response = await fetch(
+        `http://localhost:3000/api/adminpanel/orders/${orderId}`,
+        {
+          method: "PUT",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ estado: newStatus }),
+        }
+      );
+      if (!response.ok) {
+        throw new Error("Error al actualizar el estado del pedido");
+      }
+
+      await fetchOrders();
+    } catch (error) {
+      console.error(error);
+      setError("No se pudo actualizar el estado del pedido");
     }
   };
 
@@ -65,27 +96,44 @@ export const AdminOrders: React.FC = () => {
         </thead>
         <tbody>
           {orders.map((order) => {
+            console.log(order);
             // Construir la descripción uniendo los detalles
             const descripcion = order.detalles
-              .map(
-                (d) =>
-                  `${d.cantidad_producto} x ${d.nombre_producto} ($${d.precio})`
-              )
+              .map((detalle) => {
+                const price = detalle.precio ? Number(detalle.precio) : 0;
+                return `${detalle.cantidad_producto} x ${
+                  detalle.nombre_producto
+                } ($${price.toFixed(2)})`;
+              })
               .join(" | ");
+
             // Calcular total del pedido
-            const total = order.detalles.reduce(
-              (acc, d) => acc + d.cantidad_producto * d.precio,
-              0
-            );
+            const total = order.detalles.reduce((acumulador, detalle) => {
+              const price = detalle.precio ? Number(detalle.precio) : 0;
+              return acumulador + price * detalle.cantidad_producto;
+            }, 0);
+
             return (
               <tr key={order.id}>
                 <td>Pedido #{order.id}</td>
+                {/* */}
                 <td>{descripcion}</td>
+                {/* */}
                 <td>${total.toFixed(2)}</td>
+                {/* */}
                 <td>{order.estado}</td>
+                {/* */}
                 <td>
-                  <Button variant="success" size="sm">
-                    Marcar como Completo
+                  <Button
+                    variant={
+                      order.estado === "pendiente" ? "success" : "warning"
+                    }
+                    size="sm"
+                    onClick={() => handleChangeStatus(order.id, order.estado)}
+                  >
+                    {order.estado === "pendiente"
+                      ? "Marcar como Completo"
+                      : "Marcar como Pendiente"}
                   </Button>
                 </td>
               </tr>

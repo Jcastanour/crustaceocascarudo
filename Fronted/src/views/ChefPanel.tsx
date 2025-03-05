@@ -69,6 +69,7 @@ export const ChefPanel: React.FC = () => {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
+          body: JSON.stringify({ estado: "entregado" }),
         }
       );
       if (!response.ok) {
