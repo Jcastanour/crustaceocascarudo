@@ -24,7 +24,7 @@ Para comenzar con el proyecto, primero necesitas configurar la base de datos.
 
 ## 2️⃣ Abrir el proyecto en tu entorno de desarrollo
 
-Abre tu editor de código favorito (recomendamos **Visual Studio Code**):
+Abre tu editor de código favorito (recomendamos **Visual Studio Code (Demás que en Intellij tambien corre 👀)**):
 
 1. **Cargar el proyecto**: Abre el proyecto **Crustáceo Cascarudo** dentro del editor.
 
@@ -49,6 +49,12 @@ Abre tu editor de código favorito (recomendamos **Visual Studio Code**):
      ```bash
      node server.js
      ```
+
+   - Tambien lo puedes ejecutar con:
+     ```bash
+     npm run dev
+     ```
+
    - Si todo está correcto, deberías ver el siguiente mensaje en la consola:
      ```bash
      Conexión a MySQL exitosa
@@ -107,18 +113,6 @@ Ahora es momento de configurar el frontend para interactuar con el backend.
 ## 🍔🦀 ¡Esperamos que disfrutes de la página del mejor restaurante de Fondo de Bikini! 🦀🍔
 
 ---
-
-### Resumen de Archivos
-
-- **`crustaceodb.sql`**: Este archivo contiene el script SQL para crear las tablas en la base de datos.  
-  _Se encuentra en la carpeta `backend/db/` y debe ser ejecutado en tu cliente MySQL para configurar la base de datos._
-
-- **`backend/server.js`**: Archivo que inicia el servidor y maneja las conexiones de la API.
-
-- **`frontend/`**: Contiene el código fuente de la interfaz de usuario (UI) del sistema de pedidos.
-
----
-
 ### Estructura del Proyecto
 
 ```plaintext
